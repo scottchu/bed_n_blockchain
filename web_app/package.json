@@ -1,0 +1,8 @@
+{
+  "name": "bed_n_blockchain",
+  "version": "0.0.1",
+  "description": "AirBnB clone",
+  "main": "index.js",
+  "author": "Scott Chu",
+  "license": "MIT"
+}
