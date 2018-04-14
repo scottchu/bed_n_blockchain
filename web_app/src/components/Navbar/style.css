@@ -21,8 +21,8 @@
 }
 
 .logo > h1 {
-  color: $pink;
-  font-family: $font-bolder;
+  color: $orange;
+  font-family: $font-bolder-italic;
 }
 
 .menu {
@@ -45,4 +45,21 @@
 
 .menu > ul > li {
   color: $grey-darkest;
+  padding-left: 7px;
+  padding-right: 7px;
+
+  border-right: 2px solid $grey-light;
+
+  font-family: $font-regular;
+  font-size: 14px;
+
+  &:first-of-type {
+    padding-left: 0px;
+  }
+
+  &:last-of-type {
+    padding-right: 0px;
+    border-right: none;
+  }
+
 }
