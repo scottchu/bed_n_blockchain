@@ -1,8 +1,15 @@
 import React from "react"
 import { render } from "react-dom"
 
-import App from "./components/App"
+// ====================================
+// Store
+// ====================================
+import store from "./store"
 
+// ====================================
+// Components and styles
+// ====================================
+import App from "./components/App"
 import "normalize.css"
 
 render(
