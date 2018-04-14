@@ -2,6 +2,7 @@ let path = require("./utils/path")
 let webpack = require("webpack")
 
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 const config = {
   context: path.src(),
@@ -30,51 +31,41 @@ const config = {
           path.src(),
           path.nodeModules()
         ],
-        use: [
-          { loader: "style-loader" },
-          {
-            loader: "css-loader",
-            options: {
-              importLoaders: 1,
-              modules: true,
-              camelCase: true,
-              localIdentName: "[name]__[local]"
-            }
-          }
-        ]
-      },
-      {
-        test: /\.pcss$/,
-        include: [
-          path.src()
-        ],
-        use: [
-          { loader: "style-loader" },
-          {
-            loader: "css-loader",
-            options: {
-              importLoaders: 1,
-              modules: true,
-              camelCase: true,
-              localIdentName: "[name]__[local]"
-            }
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              plugins: () => {
-                return [
-                  require("precss"),
-                  require("autoprefixer")
-                ]
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            {
+              loader: "css-loader",
+              options: {
+                importLoaders: 1,
+                modules: true,
+                camelCase: true,
+                localIdentName: "[name]__[local]"
+              }
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                plugins: () => {
+                  return [
+                    require("precss"),
+                    require("autoprefixer")
+                  ]
+                }
               }
             }
-          }
-        ]
+          ]
+        })
+      },
+      {
+        test: /\.(ttf)$/,
+        include: path.assets("fonts/"),
+        loader: "url-loader"
       }
     ]
   },
   plugins: [
+    new ExtractTextPlugin("style.css"),
     new HtmlWebpackPlugin({
       title: "Bed'N'Blockchain",
       template: path.src("index.html"),
@@ -82,7 +73,7 @@ const config = {
     })
   ],
   resolve: {
-    extensions: ["*", ".js", ".jsx", ".pcss", ".css"],
+    extensions: ["*", ".js", ".jsx", ".css"],
     modules: [
       path.src(),
       path.nodeModules()
