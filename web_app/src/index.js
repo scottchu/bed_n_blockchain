@@ -1,6 +1,7 @@
 import React from "react"
 import { render } from "react-dom"
 import { Provider } from "react-redux"
+import { BrowserRouter } from "react-router-dom"
 
 // ====================================
 // Store
@@ -15,7 +16,9 @@ import "normalize.css"
 
 render(
   <Provider store={store}>
-    <App/>
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
   </Provider>,
   document.querySelector("#root")
 )
