@@ -9,7 +9,9 @@ class Navbar extends Component {
       <div className={_.container}>
         <div className={_.logo}>
           <h1>
-            Bed'N'Blockchain
+            <a href="/">
+              Bed'N'Blockchain
+            </a>
           </h1>
         </div>
         <div className={_.menu}>
