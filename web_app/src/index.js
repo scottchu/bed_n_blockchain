@@ -1,5 +1,6 @@
 import React from "react"
 import { render } from "react-dom"
+import { Provider } from "react-redux"
 
 // ====================================
 // Store
@@ -13,6 +14,8 @@ import App from "./components/App"
 import "normalize.css"
 
 render(
-  <App/>,
+  <Provider store={store}>
+    <App/>
+  </Provider>,
   document.querySelector("#root")
 )
