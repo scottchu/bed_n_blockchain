@@ -25,6 +25,25 @@ const config = {
         ]
       },
       {
+        test: /\.css$/,
+        include: [
+          path.src(),
+          path.nodeModules()
+        ],
+        use: [
+          { loader: "style-loader" },
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: true,
+              camelCase: true,
+              localIdentName: "[name]__[local]"
+            }
+          }
+        ]
+      },
+      {
         test: /\.pcss$/,
         include: [
           path.src()
@@ -63,7 +82,7 @@ const config = {
     })
   ],
   resolve: {
-    extensions: ["*", ".js", ".jsx", ".pcss"],
+    extensions: ["*", ".js", ".jsx", ".pcss", ".css"],
     modules: [
       path.src(),
       path.nodeModules()
@@ -79,7 +98,7 @@ const config = {
     inline: true,
     port: 8080,
     progress: true,
-    historyApiFallback: true
+    historyApiFallback: true,
   }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-import style from "./App.pcss"
+import style from "./style"
 
 class App extends Component {
   render() {
