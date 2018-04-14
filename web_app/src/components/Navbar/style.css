@@ -11,8 +11,6 @@
   width: 100wh;
   height: 80px;
   padding: 0px 15px;
-
-  border-bottom: 2px solid $grey-light;
 }
 
 .logo {
@@ -20,7 +18,7 @@
   align-self: center;
 }
 
-.logo > h1 {
+.logo > h1 > a {
   color: $orange;
   font-family: $font-bolder-italic;
 }
