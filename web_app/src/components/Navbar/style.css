@@ -50,9 +50,6 @@
 
   border-right: 2px solid $grey-light;
 
-  font-family: $font-regular;
-  font-size: 14px;
-
   &:first-of-type {
     padding-left: 0px;
   }
@@ -61,5 +58,11 @@
     padding-right: 0px;
     border-right: none;
   }
+}
 
+.menu > ul > li > a {
+  color: $teal;
+  font-family: $font-regular;
+  font-size: 14px;
+  text-decoration: none;
 }

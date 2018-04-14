@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Link } from "react-router-dom"
 
 import _ from "./style"
 
@@ -13,8 +14,12 @@ class Navbar extends Component {
         </div>
         <div className={_.menu}>
           <ul>
-            <li>Sign Up / Sign In</li>
-            <li>Post a Room</li>
+            <li>
+              <Link to="/session">Sign Up / Sign In</Link>
+            </li>
+            <li>
+              <Link to="/rooms/new">Post a Room</Link>
+            </li>
           </ul>
         </div>
       </div>
