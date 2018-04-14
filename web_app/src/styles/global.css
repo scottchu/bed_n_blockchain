@@ -1,0 +1,7 @@
+@import "./colors.css";
+@import "./fonts.css";
+
+a {
+  color: $teal;
+  text-decoration: none;
+}
