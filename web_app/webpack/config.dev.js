@@ -40,7 +40,7 @@ const config = {
                 importLoaders: 1,
                 modules: true,
                 camelCase: true,
-                localIdentName: "[name]__[local]"
+                localIdentName: "[path][name]__[local]--[hash:base64:5]"
               }
             },
             {
