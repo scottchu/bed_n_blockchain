@@ -10,7 +10,8 @@ const config = {
   },
   output: {
     path: path.dist(),
-    filename: "bundle.js"
+    filename: "[name].js",
+    chunkFilename: "[id].[chunkhash].js"
   },
   module: {
     rules: [
@@ -20,8 +21,35 @@ const config = {
           path.nodeModules()
         ],
         use: [
+          { loader: "babel-loader" }
+        ]
+      },
+      {
+        test: /\.pcss$/,
+        include: [
+          path.src()
+        ],
+        use: [
+          { loader: "style-loader" },
           {
-            loader: "babel-loader"
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: true,
+              camelCase: true,
+              localIdentName: "[name]__[local]"
+            }
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              plugins: () => {
+                return [
+                  require("precss"),
+                  require("autoprefixer")
+                ]
+              }
+            }
           }
         ]
       }
@@ -35,7 +63,11 @@ const config = {
     })
   ],
   resolve: {
-    modules: ["node_modules"]
+    extensions: ["*", ".js", ".jsx", ".pcss"],
+    modules: [
+      path.src(),
+      path.nodeModules()
+    ]
   },
   devtool: 'source-map',
   devServer: {
@@ -46,7 +78,8 @@ const config = {
     hot: true,
     inline: true,
     port: 8080,
-    progress: true
+    progress: true,
+    historyApiFallback: true
   }
 }
 
