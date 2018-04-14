@@ -12,6 +12,21 @@ const config = {
     path: path.dist(),
     filename: "bundle.js"
   },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: [
+          path.nodeModules()
+        ],
+        use: [
+          {
+            loader: "babel-loader"
+          }
+        ]
+      }
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: "Bed'N'Blockchain",
@@ -19,13 +34,18 @@ const config = {
       filename: "./index.html"
     })
   ],
+  resolve: {
+    modules: ["node_modules"]
+  },
+  devtool: 'source-map',
   devServer: {
     contentBase: [
       path.assets(),
       path.dist()
     ],
-    stats: "errors-only",
-    port: 9000,
+    hot: true,
+    inline: true,
+    port: 8080,
     progress: true
   }
 }
