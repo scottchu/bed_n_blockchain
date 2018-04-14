@@ -1,0 +1,48 @@
+@import "../../styles/colors.css";
+@import "../../styles/fonts.css";
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  position: relative;
+
+  width: 100wh;
+  height: 80px;
+  padding: 0px 15px;
+
+  border-bottom: 2px solid $grey-light;
+}
+
+.logo {
+  flex: 0 0 260px;
+  align-self: center;
+}
+
+.logo > h1 {
+  color: $pink;
+  font-family: $font-bolder;
+}
+
+.menu {
+  flex: 1 1 0;
+  align-self: center
+}
+
+.menu > ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+
+  position: relative;
+
+  list-style: none;
+  padding: 0;
+}
+
+.menu > ul > li {
+  color: $grey-darkest;
+}
