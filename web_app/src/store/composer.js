@@ -1,3 +1,6 @@
+// ====================================
+// Setup Redux compose
+// ====================================
 import { compose } from "redux"
 import { defaultTo, pipe, prop } from "ramda"
 
