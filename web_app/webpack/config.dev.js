@@ -48,8 +48,8 @@ const config = {
               options: {
                 plugins: () => {
                   return [
-                    require("precss"),
-                    require("autoprefixer")
+                    require("autoprefixer"),
+                    require("precss")
                   ]
                 }
               }
