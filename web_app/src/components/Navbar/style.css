@@ -18,9 +18,15 @@
   align-self: center;
 }
 
-.logo > h1 > a {
+.logo > a > h1 {
   color: $orange;
-  font-family: $font-bolder-italic;
+  font-family: $font;
+  font-weight: 900;
+  font-size: 1.2em;
+
+  & > span {
+    font-size: 2em;
+  }
 }
 
 .menu {
@@ -56,11 +62,14 @@
     padding-right: 0px;
     border-right: none;
   }
+
+  & > a {
+    font-family: $font;
+  }
 }
 
 .menu > ul > li > a {
-  color: $teal;
-  font-family: $font-regular;
+  font-family: $font;
   font-size: 14px;
   text-decoration: none;
 }

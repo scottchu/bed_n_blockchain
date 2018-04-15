@@ -2,17 +2,28 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 
 import _ from "./style"
-
+console.log(_)
 class Navbar extends Component {
   render() {
     return (
       <div className={_.container}>
         <div className={_.logo}>
-          <h1>
-            <a href="/">
-              Bed'N'Blockchain
-            </a>
-          </h1>
+          <a href="/">
+            <h1>
+              <span>
+                B
+              </span>
+              ed'
+              <span>
+                N
+              </span>
+              '
+              <span>
+                B
+              </span>
+              lockchain
+            </h1>
+          </a>
         </div>
         <div className={_.menu}>
           <ul>
