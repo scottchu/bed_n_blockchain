@@ -1,11 +1,9 @@
 import { combineReducers } from "redux"
 
-const empty = (state = {}, action) => {
-  return state
-}
+import user from "./user"
 
 const reducers = combineReducers({
-  empty
+  user
 })
 
 export default reducers
