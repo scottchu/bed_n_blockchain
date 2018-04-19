@@ -4,7 +4,7 @@ import { Route, Link, Switch } from "react-router-dom"
 import Navbar from "../Navbar"
 import Home from "../Home"
 import NotFound from "../NotFound"
-import Session from "../Session"
+import Session from "../../containers/Session"
 
 import style from "./style"
 
@@ -13,7 +13,6 @@ class App extends Component {
     return (
       <div id="app" className={style.app}>
         <Navbar />
-
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/session" component={Session}/>

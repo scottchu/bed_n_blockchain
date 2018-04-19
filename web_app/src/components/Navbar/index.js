@@ -19,10 +19,10 @@ class Navbar extends Component {
         <div className={_.menu}>
           <ul>
             <li>
-              <Link to="/session">Sign Up / Sign In</Link>
+              <Link to="/rooms/new">Become a host</Link>
             </li>
             <li>
-              <Link to="/rooms/new">Post a Room</Link>
+              <Link to="/session">Sign up / Sign In</Link>
             </li>
           </ul>
         </div>
