@@ -1,15 +1,13 @@
 import { combineEpics } from "redux-observable"
-import { Observable } from "rxjs/Rx"
+
+import user from "./user"
 
 // ====================================
 // Setup Root Redux-Observable
 // ====================================
 
-const emptyEpic = (action$) => {
-  return action$
-    .switchMap(Observable.never)
-}
-
-const epics = combineEpics(emptyEpic)
+const epics = combineEpics(
+  user
+)
 
 export default epics
