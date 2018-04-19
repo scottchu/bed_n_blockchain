@@ -1,11 +1,32 @@
-import React, { Component } from "react"
+import React from "react"
+import { compose } from "ramda"
 
-import _ from "./style"
+import EmailInput from "../../containers/Session/EmailInput"
+import PasswordInput from "../../containers/Session/PasswordInput"
+import SubmitButton from "../../containers/Session/SubmitButton"
 
-const Session = () => {
+const Session = ({ onSubmit }) => {
   return (
-    <div className={_.container}>
-      App/Session
+    <div>
+      <div>
+        <form onSubmit={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          onSubmit(e)
+        }}>
+          <section>
+            <EmailInput/>
+          </section>
+
+          <section>
+            <PasswordInput />
+          </section>
+
+          <section>
+            <SubmitButton />
+          </section>
+        </form>
+      </div>
     </div>
   )
 }
