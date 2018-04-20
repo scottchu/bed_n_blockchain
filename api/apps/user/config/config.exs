@@ -3,3 +3,5 @@
 use Mix.Config
 
 config :user, ecto_repos: [DB.Repo]
+
+import_config "#{Mix.env}.exs"
