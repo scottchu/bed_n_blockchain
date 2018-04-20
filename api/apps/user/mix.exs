@@ -25,8 +25,10 @@ defmodule User.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:db, in_umbrella: true},
       {:ecto, "~> 2.1"},
-      {:db, in_umbrella: true}
+      {:comeonin, "~> 4.0"},
+      {:argon2_elixir, "~> 1.2"}
     ]
   end
 end
