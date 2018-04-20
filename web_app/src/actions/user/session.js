@@ -31,7 +31,9 @@ export const create = () => {
   }
 }
 
-export const createSuccessful = ({ auth, profile }) => {
+export const createSuccessful = ({ response }) => {
+  const { auth, profile } = response
+
   return {
     type: TYPE.createSuccessful,
     auth,
