@@ -26,7 +26,6 @@ defmodule User.MixProject do
   defp deps do
     [
       {:db, in_umbrella: true},
-      {:ecto, "~> 2.1"},
       {:comeonin, "~> 4.0"},
       {:argon2_elixir, "~> 1.2"}
     ]

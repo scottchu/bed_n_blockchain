@@ -10,6 +10,8 @@ defmodule User.Account do
     field :password_hash, :string
 
     field :password,      :string, virtual: true
+
+    timestamps()
   end
 
   def changeset(struct, params \\ %{}) do
