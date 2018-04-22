@@ -40,7 +40,10 @@ defmodule API.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:cors_plug, "~> 1.1"}
+      {:cors_plug, "~> 1.1"},
+
+      {:db, in_umbrella: true, only: :dev},
+      {:user, in_umbrella: true}
     ]
   end
 end
