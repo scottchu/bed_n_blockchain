@@ -5,6 +5,8 @@ defmodule DB.Repo.Migrations.AddAccountsTable do
     create table("accounts") do
       add :email, :string, null: false
       add :password_hash, :string, null: false
+
+      timestamps()
     end
 
     create unique_index(:accounts, [:email])
