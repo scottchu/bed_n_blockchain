@@ -8,11 +8,10 @@ defmodule APIWeb.Router do
   scope "/api", APIWeb do
     pipe_through :api
 
-    scope "/user" do
+    resources "/user", UserController, only: [:create]
 
-      post "/session/refresh", User.SessionController, :refresh
-      post "/session", User.SessionController, :create
-      delete "/session", User.SessionController, :delete
-    end
+    post "/session/refresh", User.SessionController, :refresh
+    post "/session", User.SessionController, :create
+    delete "/session", User.SessionController, :delete
   end
 end
