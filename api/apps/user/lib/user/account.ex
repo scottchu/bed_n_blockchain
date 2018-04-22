@@ -1,30 +1,33 @@
 defmodule User.Account do
   use Ecto.Schema
 
-  import Ecto
   import Ecto.Changeset
   import Ecto.Query
 
-  schema "users" do
-    field :email,         :string
-    field :password_hash, :string
+  schema "accounts" do
+    field(:email, :string)
+    field(:password_hash, :string)
 
-    field :password,      :string, virtual: true
+    field(:password, :string, virtual: true)
 
     timestamps()
   end
+
+  @email_format ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
 
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:email])
     |> validate_required([:email])
     |> unique_constraint(:email)
+    |> validate_format(:email, @email_format)
   end
 
   def registration_changeset(struct, params \\ %{}) do
     struct
     |> changeset(params)
     |> cast(params, [:password])
+    |> validate_required([:password])
     |> validate_length(:password, min: 6, max: 100)
     |> hash_password()
   end
