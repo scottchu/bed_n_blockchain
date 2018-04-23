@@ -42,7 +42,7 @@ defmodule API.Mixfile do
       {:cowboy, "~> 1.0"},
       {:cors_plug, "~> 1.1"},
 
-      {:db, in_umbrella: true, only: :dev},
+      {:db, in_umbrella: true},
       {:user, in_umbrella: true}
     ]
   end
