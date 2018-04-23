@@ -3,11 +3,11 @@ export const TYPE = {
   signUpSuccessful: "USER_SIGN_UP_SUCCESSFUL",
   signUpFailed: "USER_SIGN_UP_FAILED",
 
-  signIn: "SESSION_SIGN_IN",
-  signInSuccessful: "SESSION_SIGN_IN_SUCCESSFUL",
-  signInFailed: "SESSION_SIGN_IN_FAILED",
+  signIn: "USER_SIGN_IN",
+  signInSuccessful: "USER_SIGN_IN_SUCCESSFUL",
+  signInFailed: "USER_SIGN_IN_FAILED",
 
-  signOut: "SESSION_SIGN_OUT"
+  signOut: "USER_SIGN_OUT"
 }
 
 export const signUp = () => {
