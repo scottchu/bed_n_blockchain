@@ -35,3 +35,7 @@ config :logger, :console, format: "[$level] $message\n"
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
+
+config :api, API.Session,
+  salt: "IlGGCdfILwPPo92bTWbDjzqLNVNWyd0I3LIvs103VZBnWnp6BRPqZ7gEO3qHPyrN",
+  max_age: 2_592_000

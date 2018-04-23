@@ -8,3 +8,7 @@ config :api, APIWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :api, API.Session,
+  salt: "salt",
+  max_age: 10
