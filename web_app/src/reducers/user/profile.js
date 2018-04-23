@@ -7,8 +7,8 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case TYPE.signInSuccessful,
-         TYPE.signUpSuccessful: {
+    case TYPE.signInSuccessful:
+    case TYPE.signUpSuccessful: {
       const { email } = action.profile
       return {
         email
