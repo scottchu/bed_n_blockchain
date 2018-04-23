@@ -10,8 +10,6 @@ defmodule APIWeb.Router do
 
     resources "/user", UserController, only: [:create]
 
-    post "/session/refresh", User.SessionController, :refresh
-    post "/session", User.SessionController, :create
-    delete "/session", User.SessionController, :delete
+    post "/session", SessionController, :create
   end
 end
