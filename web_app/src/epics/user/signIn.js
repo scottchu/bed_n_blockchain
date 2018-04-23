@@ -3,7 +3,7 @@ import { Observable } from "rxjs"
 
 import { always, compose, mapObjIndexed, path, pick, prop } from "ramda"
 
-import { TYPE, signUpSuccessful, signUpFailed } from "../../actions/user"
+import { TYPE, signInSuccessful, signInFailed } from "../../actions/user"
 
 import { create } from "../../api/session"
 
@@ -23,9 +23,9 @@ const getUserSessionForm = (getState) => () => format(getState())
 
 const responseErrors = path(["response", "errors"])
 
-const actionOnSignUpFailed = compose(
+const actionOnSignInFailed = compose(
   Observable.of,
-  signUpFailed,
+  signInFailed,
   responseErrors
 )
 
@@ -35,8 +35,8 @@ const epic = (action$, store) => {
     .map(getUserSessionForm(store.getState))
     .flatMap((data) => {
       return Observable.ajax(create(data))
-      .map(signUpSuccessful)
-      .catch(actionOnSignUpFailed)
+      .map(signInSuccessful)
+      .catch(actionOnSignInFailed)
     })
 }
 
