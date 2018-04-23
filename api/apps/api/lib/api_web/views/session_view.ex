@@ -18,4 +18,11 @@ defmodule APIWeb.SessionView do
     }
   end
 
+  def render("errors.json", %{errors: errors}) do
+    %{errors: errors}
+  end
+
+  def render("forbidden.json", %{errors: errors}) do
+    %{errors: errors}
+  end
 end
