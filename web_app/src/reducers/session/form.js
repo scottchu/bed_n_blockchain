@@ -8,7 +8,8 @@ import {
   prop
 } from "ramda"
 
-import { TYPE } from "../../../actions/user/session"
+import { TYPE as sessionTYPE } from "../../actions/session"
+import { TYPE as userTYPE } from "../../actions/user"
 
 const initialState = {
   email: {
@@ -39,14 +40,14 @@ const validate = {
   password: validatePassword
 }
 
-const userSessionFormReducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
 
-    case TYPE.form.clear: {
+    case sessionTYPE.clearForm: {
       return initialState
     }
 
-    case TYPE.form.update: {
+    case sessionTYPE.updateForm: {
       const { field, value } = action
       const isValid = validate[field](value)
 
@@ -58,9 +59,14 @@ const userSessionFormReducer = (state = initialState, action) => {
       }
     }
 
+    case userTYPE.signInSuccessful:
+    case userTYPE.signUpSuccessful: {
+      return initialState
+    }
+
     default:
       return state
   }
 }
 
-export default userSessionFormReducer
+export default reducer

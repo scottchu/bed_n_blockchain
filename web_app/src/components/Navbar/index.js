@@ -22,7 +22,11 @@ class Navbar extends Component {
               <Link to="/rooms/new">Become a host</Link>
             </li>
             <li>
-              <Link to="/session">Sign up / Sign In</Link>
+              <Link to="/sign-up">Sign Up</Link>
+            </li>
+
+            <li>
+              <Link to="/sign-in">Sign In</Link>
             </li>
           </ul>
         </div>

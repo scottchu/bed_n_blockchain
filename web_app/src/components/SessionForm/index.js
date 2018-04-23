@@ -1,11 +1,10 @@
 import React from "react"
-import { compose } from "ramda"
 
 import EmailInput from "../../containers/Session/EmailInput"
 import PasswordInput from "../../containers/Session/PasswordInput"
 import SubmitButton from "../../containers/Session/SubmitButton"
 
-const Session = ({ onSubmit }) => {
+const SessionForm = ({ onSubmit, children }) => {
   return (
     <div>
       <div>
@@ -31,4 +30,4 @@ const Session = ({ onSubmit }) => {
   )
 }
 
-export default Session
+export default SessionForm

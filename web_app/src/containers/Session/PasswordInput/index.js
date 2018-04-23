@@ -2,12 +2,12 @@ import { connect } from "react-redux"
 
 import Input from "../../../components/Input"
 
-import { updateForm } from "../../../actions/user/session"
+import { updateForm } from "../../../actions/session"
 
 import { targetValue } from "../../../common/events"
 
 const mapStateToProps = (state) => {
-  const field = state.user.session.form.password
+  const field = state.session.form.password
 
   return {
     name: "password",

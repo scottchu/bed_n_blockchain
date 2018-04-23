@@ -1,7 +1,7 @@
 import { combineEpics } from "redux-observable"
 
-import session from "./session"
+import signUp from "./signUp"
 
 export default combineEpics(
-  session
+  signUp
 )

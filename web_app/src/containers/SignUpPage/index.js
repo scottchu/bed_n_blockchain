@@ -1,16 +1,16 @@
 import { connect } from "react-redux"
 
-import Session from "../../components/Session"
+import SessionForm from "../../components/SessionForm"
 
-import { create } from "../../actions/user/session"
+import { signUp } from "../../actions/user"
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSubmit: () => dispatch(create())
+    onSubmit: () => dispatch(signUp())
   }
 }
 
 export default connect(
   null,
   mapDispatchToProps
-)(Session)
+)(SessionForm)
