@@ -1,3 +1,4 @@
+import { pickAll } from "ramda"
 
 import { TYPE } from "../../actions/user"
 
@@ -5,18 +6,12 @@ const initialState = {
   email: null
 }
 
+const cast = pickAll(["email"])
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case TYPE.signInSuccessful:
-    case TYPE.signUpSuccessful: {
-      const { email } = action.profile
-      return {
-        email
-      }
-    }
-
-    case TYPE.signOut: {
-      return initialState
+    case TYPE.setProfile: {
+      return cast(action.profile)
     }
 
     default:

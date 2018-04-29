@@ -7,17 +7,10 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case TYPE.signInSuccessful:
-    case TYPE.signUpSuccessful: {
-      const { token } = action.auth
+    case TYPE.setAuthToken: {
+      const { token } = action
       return {
         token
-      }
-    }
-
-    case TYPE.signOut: {
-      return {
-        token: null
       }
     }
 
