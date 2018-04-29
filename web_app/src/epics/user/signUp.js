@@ -1,4 +1,3 @@
-import { combineEpics } from "redux-observable"
 import { Observable } from "rxjs"
 
 import { always, compose, mapObjIndexed, path, pick, prop } from "ramda"
@@ -39,7 +38,5 @@ const epic = (action$, store) => {
       .catch(actionOnSignUpFailed)
     })
 }
-
-
 
 export default epic
