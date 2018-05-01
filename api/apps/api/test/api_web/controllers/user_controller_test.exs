@@ -33,7 +33,7 @@ defmodule APIWeb.UserControllerTest do
 
       token = response["auth"]["token"]
 
-      {:ok, data} = API.Session.decode(token)
+      {:ok, data} = API.Session.verify(token)
 
       assert data[:id] == account.id
     end

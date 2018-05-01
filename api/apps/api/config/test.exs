@@ -10,5 +10,6 @@ config :api, APIWeb.Endpoint,
 config :logger, level: :warn
 
 config :api, API.Session,
+  secret: "zkZ9WWmhS3SpOWsjZofzPTJzuef0raJCAwpsYq/XEVpPmeiTfjQqwozEvD03PVkU",
   salt: "salt",
   max_age: 10

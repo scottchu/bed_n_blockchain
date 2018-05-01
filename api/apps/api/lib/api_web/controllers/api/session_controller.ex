@@ -2,13 +2,12 @@ defmodule APIWeb.SessionController do
   use APIWeb, :controller
 
   def create(conn, params) do
-    case User.authenticate(params) do
-      {:ok, account} ->
-        token = API.Session.encode(account)
-
+    with {:ok, account} <- User.authenticate(params),
+         {:ok, token} <- API.Session.sign(account) do
         conn
         |> put_status(:created)
         |> render("show.json", account: account, token: token)
+    else
       {:error, reason} ->
         conn
         |> put_status(:unauthorized)

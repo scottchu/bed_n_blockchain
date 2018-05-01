@@ -37,5 +37,6 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 config :api, API.Session,
-  salt: "IlGGCdfILwPPo92bTWbDjzqLNVNWyd0I3LIvs103VZBnWnp6BRPqZ7gEO3qHPyrN",
+  secret: "zkZ9WWmhS3SpOWsjZofzPTJzuef0raJCAwpsYq/XEVpPmeiTfjQqwozEvD03PVkU",
+  salt: "Frhu/N/evsQS/5dVLE56xrQLaDhyCv1n",
   max_age: 2_592_000
