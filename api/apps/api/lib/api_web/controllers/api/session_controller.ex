@@ -5,7 +5,7 @@ defmodule APIWeb.SessionController do
     with {:ok, account} <- User.authenticate(params),
          {:ok, token} <- API.Session.sign(account) do
         conn
-        |> put_status(:created)
+        |> put_status(:ok)
         |> render("show.json", account: account, token: token)
     else
       {:error, reason} ->
