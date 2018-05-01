@@ -25,6 +25,10 @@ defmodule API.Plug.Authorization do
     {:ok, String.replace(token, "\"", "")}
   end
 
+  defp parse_token([token]) do
+    {:ok, String.replace(token, "\"", "")}
+  end
+
   defp parse_token(_) do
     :error
   end
