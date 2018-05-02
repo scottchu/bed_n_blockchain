@@ -8,10 +8,9 @@ defmodule APIWeb.UserController do
 
     conn
     |> put_status(:ok)
-    |> render(APIWeb.SessionView,
+    |> render(APIWeb.UserView,
       "show.json",
-      account: account,
-      token: nil)
+      account: account)
   end
 
   def create(conn, params) do

@@ -3,18 +3,12 @@ defmodule APIWeb.SessionView do
 
   def render("show.json", %{account: account, token: token}) do
     %{
-      auth: render_auth(token),
-      profile: render_profile(account)
-    }
-  end
-
-  def render_auth(nil), do: nil
-
-  def render_auth(token), do: %{token: token}
-
-  def render_profile(account) do
-    %{
-      email: account.email
+      auth: %{
+        token: token
+      },
+      profile: %{
+        email: account.email
+      }
     }
   end
 
