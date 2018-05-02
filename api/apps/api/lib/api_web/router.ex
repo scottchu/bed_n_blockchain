@@ -8,7 +8,7 @@ defmodule APIWeb.Router do
   scope "/api", APIWeb do
     pipe_through :api
 
-    resources "/user", UserController, only: [:create]
+    resources "/user", UserController, only: [:show, :create], singleton: true
 
     post "/session", SessionController, :create
   end

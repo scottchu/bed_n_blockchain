@@ -1,6 +1,19 @@
 defmodule APIWeb.UserController do
   use APIWeb, :controller
 
+  plug API.Plug.Authorization when action in [:show]
+
+  def show(conn, _params) do
+    account = conn.assigns().current_account
+
+    conn
+    |> put_status(:ok)
+    |> render(APIWeb.SessionView,
+      "show.json",
+      account: account,
+      token: nil)
+  end
+
   def create(conn, params) do
     with {:ok, account} <- User.create_account(params),
          {:ok, token} <- API.Session.sign(account) do
