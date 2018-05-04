@@ -1,38 +1,31 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
+import React from "react"
+import { CommonMenu, GuestMenu, UserMenu } from "./menu"
 
 import _ from "./style"
 
-class Navbar extends Component {
-  render() {
-    return (
-      <div className={_.container}>
-        <div className={_.logo}>
-          <a href="/">
-            <h1>
-              <span>B</span>ed'
-              <span>N</span>'
-              <span>B</span>lockchain
-            </h1>
-          </a>
-        </div>
-        <div className={_.menu}>
-          <ul>
-            <li>
-              <Link to="/rooms/new">Become a host</Link>
-            </li>
-            <li>
-              <Link to="/sign-up">Sign Up</Link>
-            </li>
-
-            <li>
-              <Link to="/sign-in">Sign In</Link>
-            </li>
-          </ul>
-        </div>
+const Navbar = ({ signedIn }) => {
+  return (
+    <div className={_.container}>
+      <div className={_.logo}>
+        <a href="/">
+          <h1>
+            <span>B</span>ed'
+            <span>N</span>'
+            <span>B</span>lockchain
+          </h1>
+        </a>
       </div>
-    )
-  }
+      <div className={_.menu}>
+        <ul>
+          <CommonMenu />
+          { signedIn ?
+            <UserMenu /> :
+            <GuestMenu />
+          }
+        </ul>
+      </div>
+    </div>
+  )
 }
 
 export default Navbar

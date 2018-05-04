@@ -1,0 +1,10 @@
+@import "../../../styles/colors.css";
+
+.navlink {
+  padding: 10px 7px;
+
+  &.active {
+    background: $teal;
+    color: #FFFFFF;
+  }
+}
