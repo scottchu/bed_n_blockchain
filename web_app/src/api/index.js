@@ -1,10 +1,7 @@
-import session from "./session"
-import user from "./user"
+import * as methods from "./methods"
+import * as headers from "./headers"
+import * as path from "./path"
 
-export const endpoint = {
-  session,
-  user
-}
+const api = {...methods, headers, path}
 
-
-
+export default api

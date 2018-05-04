@@ -2,16 +2,16 @@
 import { TYPE } from "../../actions/user"
 
 const initialState = {
-  token: null
+  token: null,
+  signedIn: false
 }
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
+const reducer = (state = initialState, { type, token }) => {
+  switch (type) {
+    case TYPE.loadAuthToken:
     case TYPE.setAuthToken: {
-      const { token } = action
-      return {
-        token
-      }
+      const signedIn = token != null
+      return { token, signedIn }
     }
 
     default:

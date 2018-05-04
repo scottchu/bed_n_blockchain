@@ -1,13 +1,14 @@
 import { combineEpics } from "redux-observable"
 import { Observable } from "rxjs"
 
-import { propOr } from "ramda"
+import { equals, pathOr, propOr } from "ramda"
 
 import {
   TYPE,
   signInSuccessful,
   signUpSuccessful,
-  setProfile
+  setProfile,
+  signOut
 } from "../../actions/user"
 
 const profile = propOr(null, "profile")
@@ -24,6 +25,21 @@ const sessionCreated = (action$) => {
     .map(setProfile)
 }
 
+const getProfile = pathOr(null, ["response", "profile"])
+
+const fetchProfile = (action$, store, { api, signedIn }) => {
+  return signedIn
+    .filter(equals(true))
+    .flatMap(() => {
+      return api.get(api.path.user)
+        .map(getProfile)
+        .map(setProfile)
+        .catch(() => Observable.of(signOut()))
+        .take(1)
+    })
+}
+
 export default combineEpics(
-  sessionCreated
+  sessionCreated,
+  fetchProfile
 )

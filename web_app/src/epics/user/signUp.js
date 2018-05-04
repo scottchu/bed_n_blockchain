@@ -4,8 +4,6 @@ import { always, compose, mapObjIndexed, path, pick, prop } from "ramda"
 
 import { TYPE, signUpSuccessful, signUpFailed } from "../../actions/user"
 
-import { create } from "../../api/user"
-
 const sessionForm = path(["session", "form"])
 
 const castParams = pick(["email", "password"])
@@ -28,14 +26,15 @@ const actionOnSignUpFailed = compose(
   responseErrors
 )
 
-const epic = (action$, store) => {
+const epic = (action$, { getState }, { api }) => {
   return action$
     .ofType(TYPE.signUp)
-    .map(getUserSessionForm(store.getState))
+    .map(getUserSessionForm(getState))
     .flatMap((data) => {
-      return Observable.ajax(create(data))
+      return api.post(api.path.user, data)
       .map(signUpSuccessful)
       .catch(actionOnSignUpFailed)
+      .take(1)
     })
 }
 

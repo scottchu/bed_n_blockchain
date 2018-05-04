@@ -49,10 +49,12 @@ const delAuthTokenOnSessionDestroyed = (action$, _, { cookies }) => {
 
   Returns: [UserSetAuthToken]
 */
-const getAuthTokenOnPageLoad = (action$, _, { cookies }) => {
+const getAuthTokenOnPageLoad = (action$, _, { api, cookies, signedIn }) => {
   return Observable
     .of(getFrom(cookies))
     .filter(isNotNil)
+    .do(api.headers.set("Authorization"))
+    .do(() => signedIn.next(true))
     .map(setAuthToken)
 }
 

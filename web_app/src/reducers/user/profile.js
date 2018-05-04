@@ -2,9 +2,7 @@ import { pickAll } from "ramda"
 
 import { TYPE } from "../../actions/user"
 
-const initialState = {
-  email: null
-}
+const initialState = null
 
 const cast = pickAll(["email"])
 
