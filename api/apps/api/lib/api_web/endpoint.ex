@@ -35,7 +35,11 @@ defmodule APIWeb.Endpoint do
     key: "_api_key",
     signing_salt: "NHAQ53BL"
 
-  plug CORSPlug
+  plug CORSPlug, origin: [
+    "http://localhost:8080",
+    "http://127.0.0.1:8080"
+  ]
+
   plug APIWeb.Router
 
   @doc """
