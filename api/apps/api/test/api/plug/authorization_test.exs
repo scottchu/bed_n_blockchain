@@ -11,14 +11,14 @@ defmodule API.Plug.AuthorizationTest do
     "password" => "123456"
   }
 
-  test "request passes through when bearer token is valid", %{conn: conn} do
+  test "valid Bearer token", %{conn: conn} do
     {:ok, account} = User.create_account(@valid_attrs)
 
     {:ok, token} = API.Session.sign(account)
 
     conn =
       conn
-      |> put_req_header("authorization", "bearer " <> token)
+      |> put_req_header("authorization", "Bearer " <> token)
       |> Authorization.call(@opts)
 
     current_account = conn.assigns().current_account()
@@ -27,7 +27,7 @@ defmodule API.Plug.AuthorizationTest do
     assert current_account.id == account.id
   end
 
-  test "request passes through when token is valid", %{conn: conn} do
+  test "valid token", %{conn: conn} do
     {:ok, account} = User.create_account(@valid_attrs)
 
     {:ok, token} = API.Session.sign(account)
@@ -43,7 +43,7 @@ defmodule API.Plug.AuthorizationTest do
     assert current_account.id == account.id
   end
 
-  test "request is halted when token is invalid", %{conn: conn} do
+  test "invalid token", %{conn: conn} do
     {:ok, _} = User.create_account(@valid_attrs)
 
     token = ""
@@ -57,7 +57,7 @@ defmodule API.Plug.AuthorizationTest do
     assert conn.halted()
   end
 
-  test "request is halted when token is missing", %{conn: conn} do
+  test "missing token", %{conn: conn} do
     {:ok, _} = User.create_account(@valid_attrs)
 
     conn =
@@ -68,13 +68,13 @@ defmodule API.Plug.AuthorizationTest do
     assert conn.halted()
   end
 
-  test "request is halted when user does not exist", %{conn: conn} do
+  test "user does not exist", %{conn: conn} do
     account = %User.Account{id: 1}
     {:ok, token} = API.Session.sign(account)
 
     conn =
       conn
-      |> put_req_header("authorization", "bearer " <> token)
+      |> put_req_header("authorization", "Bearer " <> token)
       |> Authorization.call(@opts)
 
     assert conn.status() == 401
