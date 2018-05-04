@@ -1,12 +1,14 @@
 import React, { Component } from "react"
 import { Route, Link, Switch } from "react-router-dom"
 
-import Navbar from "../Navbar"
-import Home from "../Home"
+import AccountPage from "../AccountPage"
+import HomePage from "../HomePage"
 import NotFound from "../NotFound"
-import SignInPage from "../../containers/SignInPage"
-import SignUpPage from "../../containers/SignUpPage"
+import SignInPage from "../SignInPage"
+import SignUpPage from "../SignUpPage"
 
+import Navbar from "../../containers/Navbar"
+import SignOut from "../../containers/SignOut"
 
 import style from "./style"
 
@@ -16,9 +18,11 @@ class App extends Component {
       <div id="app" className={style.app}>
         <Navbar />
         <Switch>
-          <Route exact path="/" component={Home}/>
+          <Route exact path="/" component={HomePage}/>
+          <Route path="/account" component={AccountPage}/>
           <Route path="/sign-in" component={SignInPage}/>
           <Route path="/sign-up" component={SignUpPage}/>
+          <Route path="/sign-out" component={SignOut}/>
           <Route component={NotFound}/>
         </Switch>
       </div>
