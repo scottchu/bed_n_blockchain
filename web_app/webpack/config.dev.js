@@ -12,7 +12,8 @@ const config = {
   output: {
     path: path.dist(),
     filename: "[name].js",
-    chunkFilename: "[id].[chunkhash].js"
+    chunkFilename: "[id].[chunkhash].js",
+    publicPath: "/"
   },
   module: {
     rules: [
@@ -89,7 +90,7 @@ const config = {
     inline: true,
     port: 8080,
     progress: true,
-    historyApiFallback: true,
+    historyApiFallback: true
   }
 }
 

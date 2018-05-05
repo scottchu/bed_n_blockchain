@@ -17,6 +17,7 @@ class App extends Component {
     return (
       <div id="app" className={style.app}>
         <Navbar />
+
         <Switch>
           <Route exact path="/" component={HomePage}/>
           <Route path="/account" component={AccountPage}/>
