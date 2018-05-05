@@ -2,12 +2,14 @@ import React from "react"
 import { Redirect } from "react-router-dom"
 
 import SignUpForm from "../../containers/SignUpForm"
-import RedirectWhenSignedIn from "../../containers/RedirectWhenSignedIn"
+import AuthorizeRedirect from "../../containers/AuthorizeRedirect"
 
 const SignUpPage = () => {
   return (
     <div>
-      <RedirectWhenSignedIn to="/" />
+      <AuthorizeRedirect
+        whenSignedIn
+        to="/" />
       <SignUpForm />
     </div>
   )
