@@ -1,0 +1,79 @@
+@import "../../../styles/colors";
+@import "../../../styles/fonts";
+
+$offset: 7px;
+
+.container {
+  position: relative;
+
+  font-family: $font;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.button {
+  display: block;
+  background: $black;
+  color: $white;
+  padding: 7px 15px;
+
+  cursor: pointer;
+
+  transition: background linear 200ms,
+              color linear 200ms;
+
+  &:hover {
+    background: $grey;
+  }
+}
+
+.container.active .button {
+  background: $grey;
+}
+
+.dropdown {
+  position: absolute;
+
+  right: 0;
+  top: calc(100% + $offset);
+  width: 100px;
+
+  visibility: hidden;
+  opacity: 0;
+
+  background: $white;
+  text-align: right;
+
+  transition: opacity linear 200ms;
+}
+
+.container.active .dropdown {
+  visibility: visible;
+  opacity: 1;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+
+}
+
+.link {
+  display: block;
+  padding: 7px 15px;
+  color: $black;
+
+  transition: background linear 200ms,
+              color linear 200ms;
+
+  &:hover {
+    background: $grey;
+    color: $white;
+  }
+}
+
+

@@ -1,0 +1,45 @@
+@import "../../../styles/colors";
+@import "../../../styles/fonts";
+
+.container {
+  font-family: $font;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  margin: 0 15px;
+
+  &:last-of-type {
+    margin: 0px;
+  }
+}
+
+.link {
+  display: block;
+  padding: 7px 15px;
+
+  background: $black;
+  color: $white;
+
+  transition: background linear 200ms;
+
+  &:hover {
+    background: $grey;
+  }
+
+  &.active {
+    background: $grey;
+  }
+}

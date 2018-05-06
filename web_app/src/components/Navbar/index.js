@@ -1,31 +1,15 @@
 import React from "react"
-import { CommonMenu, GuestMenu, UserMenu } from "./menu"
+import Menu from "../../containers/Menu"
 
-import _ from "./style"
+import { withStyle } from "../../common/css"
+import style from "./style"
 
-const Navbar = ({ signedIn }) => {
+const Navbar = ({ style, signedIn }) => {
   return (
-    <div className={_.container}>
-      <div className={_.logo}>
-        <a href="/">
-          <h1>
-            <span>B</span>ed'
-            <span>N</span>'
-            <span>B</span>lockchain
-          </h1>
-        </a>
-      </div>
-      <div className={_.menu}>
-        <ul>
-          <CommonMenu />
-          { signedIn ?
-            <UserMenu /> :
-            <GuestMenu />
-          }
-        </ul>
-      </div>
+    <div className={style.container}>
+      <Menu />
     </div>
   )
 }
 
-export default Navbar
+export default withStyle(style)(Navbar)

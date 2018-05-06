@@ -1,0 +1,25 @@
+@import "../../styles/colors";
+@import "../../styles/fonts";
+
+.container {
+
+}
+
+.button {
+}
+
+.button > i {
+  font-family: $font;
+  color: $white;
+  background: $black;
+  padding: 7px 15px;
+
+  transition: background linear 250ms;
+  &:hover {
+    background: $grey;
+  }
+}
+
+.menu {
+
+}

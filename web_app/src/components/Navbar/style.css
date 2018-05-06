@@ -1,75 +1,19 @@
 @import "../../styles/colors.css";
 @import "../../styles/fonts.css";
 
+/* height of the Navbar */
+$height: 60px;
+
 .container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  position: fixed;
+  right: 0;
+  top: 0;
 
-  position: relative;
-
-  width: 100wh;
-  height: 80px;
-  padding: 0px 15px;
-}
-
-.logo {
-  flex: 0 0 260px;
-  align-self: center;
-}
-
-.logo > a > h1 {
-  color: $orange;
-  font-family: $font;
-  font-weight: 900;
-  font-size: 1.2em;
-
-  & > span {
-    font-size: 2em;
-  }
-}
-
-.menu {
-  flex: 1 1 0;
-  align-self: center
-}
-
-.menu > ul {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: flex-end;
 
-  position: relative;
-
-  list-style: none;
-  padding: 0;
-}
-
-.menu > ul > li {
-  color: $grey-darkest;
-  padding-left: 7px;
-  padding-right: 7px;
-
-  border-right: 2px solid $grey-light;
-
-  &:first-of-type {
-    padding-left: 0px;
-  }
-
-  &:last-of-type {
-    padding-right: 0px;
-    border-right: none;
-  }
-
-  & > a {
-    font-family: $font;
-  }
-}
-
-.menu > ul > li > a {
-  font-family: $font;
-  font-size: 14px;
-  text-decoration: none;
+  height: $height;
+  padding-right: 15px;
 }
