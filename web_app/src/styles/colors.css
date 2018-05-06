@@ -1,12 +1,8 @@
-$pink: #F23893;
-$orange: #E8726B;
-$green: #8ADD37;
-$blue: #00B9F2;
-$teal: #5778A2;
-
-$grey-lightest: #F8F8F8;
-$grey-light: #EDEDED;
-$grey: #B5B5B5;
-$grey-dark: #6E6E6E;
-$grey-darkest: #4F4F4F;
-$grey-background: #F2F2F2;
+/*
+  Color Schemes
+*/
+$green: #C0DFD9;
+$yellow: #E9ECE5;
+$grey: #B3C2BF;
+$black: #3B3A36;
+$white: #FFFFFF;
