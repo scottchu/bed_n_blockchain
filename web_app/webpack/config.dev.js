@@ -59,9 +59,18 @@ const config = {
         })
       },
       {
-        test: /\.(ttf)$/,
-        include: path.assets("fonts/"),
-        loader: "url-loader"
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        include: [path.assets("fonts"), path.nodeModules()],
+        use: [
+          { loader: "url-loader" }
+        ]
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        include: [path.assets("fonts"), path.nodeModules()],
+        use: [
+          { loader: "file-loader" }
+        ]
       }
     ]
   },
