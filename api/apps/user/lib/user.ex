@@ -7,8 +7,8 @@ defmodule User do
   import Comeonin.Argon2, only: [checkpw: 2, dummy_checkpw: 0]
 
   def create_account(params \\ %{}) do
-    changeset = Account.registration_changeset(%Account{}, params)
-    Repo.insert(changeset)
+    Account.registration_changeset(%Account{}, params)
+    |> Repo.insert
   end
 
   def find_account(id) do
