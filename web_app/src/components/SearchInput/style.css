@@ -1,0 +1,21 @@
+@import "../../styles/colors.css";
+@import "../../styles/fonts.css";
+
+.input {
+  display: block;
+  width: 100%;
+  height: 27px;
+
+  padding-left: 7px;
+
+  font-size: 16px;
+
+  outline: none;
+  border: none;
+  border-bottom: 1px solid $black;
+
+  &::placeholder {
+    color: color-mod($black tint(50%));
+    opacity: 1;
+  }
+}

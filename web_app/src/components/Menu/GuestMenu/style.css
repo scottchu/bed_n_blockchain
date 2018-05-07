@@ -19,10 +19,10 @@
 }
 
 .item {
-  margin: 0 15px;
+  margin-right: 15px;
 
   &:last-of-type {
-    margin: 0px;
+    margin-right: 0px;
   }
 }
 
