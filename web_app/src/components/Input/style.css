@@ -1,3 +1,4 @@
+@import "../../styles/animation";
 @import "../../styles/colors.css";
 @import "../../styles/fonts.css";
 
@@ -40,9 +41,9 @@
   outline: none;
   border: 1px solid $green;
 
-  transition: border linear 200ms,
-              background linear 200ms,
-              color linear 200ms;
+  transition: border linear $regular-delay,
+              background linear $regular-delay,
+              color linear $regular-delay;
 
   &:focus, &:hover {
     border: 1px solid color-mod($green l(30%));

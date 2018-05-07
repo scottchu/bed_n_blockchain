@@ -1,3 +1,4 @@
+@import "../../../styles/animation";
 @import "../../../styles/colors";
 @import "../../../styles/fonts";
 
@@ -19,8 +20,8 @@ $offset: 7px;
 
   cursor: pointer;
 
-  transition: background linear 200ms,
-              color linear 200ms;
+  transition: background linear $regular-delay,
+              color linear $regular-delay;
 
   &:hover {
     background: $grey;
@@ -44,7 +45,7 @@ $offset: 7px;
   background: $white;
   text-align: right;
 
-  transition: opacity linear 200ms;
+  transition: opacity linear $regular-delay;
 }
 
 .container.active .dropdown {
@@ -67,8 +68,8 @@ $offset: 7px;
   padding: 7px 15px;
   color: $black;
 
-  transition: background linear 200ms,
-              color linear 200ms;
+  transition: background linear $regular-delay,
+              color linear $regular-delay;
 
   &:hover {
     background: $grey;
