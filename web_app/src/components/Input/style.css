@@ -1,0 +1,69 @@
+@import "../../styles/colors.css";
+@import "../../styles/fonts.css";
+
+.container {
+  position: relative;
+}
+
+.label {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  width: 100%;
+}
+
+.label-text {
+  position: absolute;
+  top: 2px;
+  left: 0px;
+  color: $black;
+  font-weight: 300;
+  user-select: none;
+}
+
+.input {
+  flex: 1 1 auto;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 15px;
+  padding: 15px 15px;
+
+  background: $white;
+  color: $black;
+  font-size: 12px;
+  font-weight: 700;
+
+  outline: none;
+  border: 1px solid $green;
+
+  transition: border linear 200ms,
+              background linear 200ms,
+              color linear 200ms;
+
+  &:focus, &:hover {
+    border: 1px solid color-mod($green l(30%));
+  }
+
+  &:active {
+    border: 1px solid color-mod($green l(60%));
+  }
+}
+
+.input[type="submit"] {
+  background: color-mod($green l(60%));
+  color: $white;
+
+  &:hover {
+    background: color-mod($green l(30%));
+    color: $white;
+  }
+
+  &:active {
+    background: color-mod($green l(45%));
+    color: $white;
+  }
+}

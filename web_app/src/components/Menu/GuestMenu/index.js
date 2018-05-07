@@ -12,7 +12,12 @@ const GuesMenu = ({ style }) => {
           <NavLink
             className={style.link}
             activeClassName={style.active}
-            to="/sign-up">
+            to={{
+              pathname: "/sign-up",
+              state: {
+                modal: true
+              }
+            }}>
             Sign Up
           </NavLink>
         </li>
@@ -20,7 +25,12 @@ const GuesMenu = ({ style }) => {
           <NavLink
             className={style.link}
             activeClassName={style.active}
-            to="/sign-in">
+            to={{
+              pathname: "/sign-in",
+              state: {
+                modal: true
+              }
+            }}>
             Sign In
           </NavLink>
         </li>

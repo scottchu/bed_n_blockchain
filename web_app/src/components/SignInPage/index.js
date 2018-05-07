@@ -2,9 +2,12 @@ import React from "react"
 import SignInForm from "../../containers/SignInForm"
 import AuthorizeRedirect from "../../containers/AuthorizeRedirect"
 
-const SignInPage = () => {
+import { withStyle } from "../../common/css"
+import style from "./style"
+
+const SignInPage = ({ style }) => {
   return (
-    <div>
+    <div className={style.container}>
       <AuthorizeRedirect
         whenSignedIn
         to="/" />
@@ -14,4 +17,4 @@ const SignInPage = () => {
   )
 }
 
-export default SignInPage
+export default withStyle(style)(SignInPage)

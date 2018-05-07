@@ -1,17 +1,23 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import _ from "./style"
+import { withStyle } from "../../common/css"
+import style from "./style"
 
-const Input = ({ label, ...props }) => {
+const Input = ({ style, label, ...props }) => {
   return (
-    <div className={_.container}>
-      <label>
-        {label}
-        <input {...props} />
+    <div className={style.container}>
+      <label className={style.label}>
+        <span className={style.labelText}>
+          {label}
+        </span>
+
+        <input
+          className={style.input}
+          {...props} />
       </label>
     </div>
   )
 }
 
-export default Input
+export default withStyle(style)(Input)

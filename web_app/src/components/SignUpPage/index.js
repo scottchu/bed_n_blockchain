@@ -4,15 +4,20 @@ import { Redirect } from "react-router-dom"
 import SignUpForm from "../../containers/SignUpForm"
 import AuthorizeRedirect from "../../containers/AuthorizeRedirect"
 
-const SignUpPage = () => {
+import { withStyle } from "../../common/css"
+import style from "./style"
+
+
+const SignUpPage = ({ style }) => {
   return (
-    <div>
+    <div className={style.container}>
       <AuthorizeRedirect
         whenSignedIn
         to="/" />
+
       <SignUpForm />
     </div>
   )
 }
 
-export default SignUpPage
+export default withStyle(style)(SignUpPage)

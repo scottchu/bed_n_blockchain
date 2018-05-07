@@ -4,24 +4,30 @@ import EmailInput from "../../containers/Session/EmailInput"
 import PasswordInput from "../../containers/Session/PasswordInput"
 import SubmitButton from "../../containers/Session/SubmitButton"
 
-const SessionForm = ({ onSubmit, children }) => {
+import { withStyle } from "../../common/css"
+import style from "./style"
+
+const SessionForm = ({ onSubmit, style, title }) => {
   return (
-    <div>
-      <div>
+    <div className={style.container}>
+      <div className={style.header}>
+        <h1>{title}</h1>
+      </div>
+      <div className={style.body}>
         <form onSubmit={(e) => {
           e.preventDefault()
           e.stopPropagation()
           onSubmit(e)
         }}>
-          <section>
+          <section className={style.section}>
             <EmailInput/>
           </section>
 
-          <section>
+          <section className={style.section}>
             <PasswordInput />
           </section>
 
-          <section>
+          <section className={style.section}>
             <SubmitButton />
           </section>
         </form>
@@ -30,4 +36,4 @@ const SessionForm = ({ onSubmit, children }) => {
   )
 }
 
-export default SessionForm
+export default withStyle(style)(SessionForm)

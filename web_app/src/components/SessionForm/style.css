@@ -1,0 +1,31 @@
+@import "../../styles/colors";
+@import "../../styles/fonts";
+
+.container {
+  padding: 30px 15px;
+
+  border: 1px solid color-mod($green tint(30%));
+  background: $green;
+}
+
+.header {
+  margin-bottom: 15px;
+  border-bottom: 1px solid color-mod($green tint(30%));
+  & > h1 {
+    color: $white;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+}
+
+.body {
+
+}
+
+.section {
+  margin-bottom: 15px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}

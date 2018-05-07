@@ -5,9 +5,15 @@
 $height: 60px;
 
 .container {
+  height: $height;
+}
+
+.inner {
   position: fixed;
-  right: 0;
+
   top: 0;
+  left: 0;
+  right: 0;
 
   display: flex;
   flex-direction: row;
@@ -16,4 +22,19 @@ $height: 60px;
 
   height: $height;
   padding-right: 15px;
+}
+
+.left {
+  flex: 1 1 auto;
+}
+
+.right {
+  flex: 0 0 auto;
+}
+
+/*
+  Disable user select on all links under navbar
+*/
+.container a {
+  user-select: none;
 }

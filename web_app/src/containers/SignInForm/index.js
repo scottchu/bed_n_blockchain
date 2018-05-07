@@ -4,6 +4,12 @@ import SessionForm from "../../components/SessionForm"
 
 import { signIn } from "../../actions/user"
 
+const mapStateToProps = () => {
+  return {
+    title: "Sign In"
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     onSubmit: () => dispatch(signIn())
@@ -11,6 +17,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SessionForm)
