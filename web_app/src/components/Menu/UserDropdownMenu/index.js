@@ -9,8 +9,24 @@ class UserDropdownMenu extends Component {
     active: false
   }
 
-  toggle = () => {
-    return this.setState(({ active }) => ({active: !active}))
+  switch = () => {
+    return this.setState((state) => {
+      return {...state,
+        active: !state.active
+      }
+    })
+  }
+
+  turn = (bool) => {
+    return this.setState((state) => {
+      return {...state,
+        active: bool
+      }
+    })
+  }
+
+  componentWillUpdate({ scrolling }) {
+    (scrolling && this.state.active && this.turn(false))
   }
 
   render() {
@@ -26,7 +42,7 @@ class UserDropdownMenu extends Component {
         <div>
           <a
             className={style.button}
-            onClick={this.toggle}>
+            onClick={this.switch}>
             Menu
           </a>
         </div>
@@ -47,6 +63,14 @@ class UserDropdownMenu extends Component {
                 activeClassName={style.active}
                 to="/profile">
                 Profile
+              </NavLink>
+            </li>
+            <li className={style.item}>
+              <NavLink
+                className={style.link}
+                activeClassName={style.active}
+                to="/host">
+                Host
               </NavLink>
             </li>
             <li className={style.item}>

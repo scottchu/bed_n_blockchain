@@ -9,25 +9,30 @@ import SignInPage from "../SignInPage"
 import SignUpPage from "../SignUpPage"
 import SignOut from "../../containers/SignOut"
 
+import { withStyle } from "../../common/css"
 import style from "./style"
 
 class App extends Component {
   render() {
+    const { style } = this.props
     return (
       <div id="app" className={style.app}>
-        <Navbar />
-
-        <Switch>
-          <Route exact path="/" component={HomePage}/>
-          <Route path="/account" component={AccountPage}/>
-          <Route path="/sign-in" component={SignInPage}/>
-          <Route path="/sign-up" component={SignUpPage}/>
-          <Route path="/sign-out" component={SignOut}/>
-          <Route component={NotFound}/>
-        </Switch>
+        <div className={style.navbar}>
+          <Navbar />
+        </div>
+        <div className={style.content}>
+          <Switch>
+            <Route exact path="/" component={HomePage}/>
+            <Route path="/account" component={AccountPage}/>
+            <Route path="/sign-in" component={SignInPage}/>
+            <Route path="/sign-up" component={SignUpPage}/>
+            <Route path="/sign-out" component={SignOut}/>
+            <Route component={NotFound}/>
+          </Switch>
+        </div>
       </div>
     )
   }
 }
 
-export default App
+export default withStyle(style)(App)

@@ -11,8 +11,10 @@ import epics from "../../epics"
 const dependencies = {
   api,
   console,
+  document,
   cookies,
-  signedIn
+  signedIn,
+  window
 }
 
 const middleware = createEpicMiddleware(epics, { dependencies })

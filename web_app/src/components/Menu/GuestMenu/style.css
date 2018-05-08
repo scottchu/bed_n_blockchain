@@ -31,16 +31,17 @@
   display: block;
   padding: 7px 15px;
 
-  background: $black;
-  color: $white;
+  color: $black;
 
-  transition: background linear $regular-delay;
+  border-bottom: 1px solid $white;
+
+  transition: border-bottom linear $regular-delay;
 
   &:hover {
-    background: $grey;
+    border-bottom: 1px solid $grey;
   }
 
   &.active {
-    background: $grey;
+    border-bottom: 1px solid $black;
   }
 }

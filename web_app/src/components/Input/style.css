@@ -17,7 +17,7 @@
 
 .label-text {
   position: absolute;
-  top: 2px;
+  top: 7px;
   left: 0px;
   color: $black;
   font-weight: 300;
@@ -39,32 +39,33 @@
   font-weight: 700;
 
   outline: none;
-  border: 1px solid $green;
+  border: 1px solid $white;
+  border-bottom: 1px solid $grey;
 
-  transition: border linear $regular-delay,
+  transition: border-bottom linear $regular-delay,
               background linear $regular-delay,
               color linear $regular-delay;
 
   &:focus, &:hover {
-    border: 1px solid color-mod($green l(30%));
+    border-bottom: 1px solid $green;
   }
 
   &:active {
-    border: 1px solid color-mod($green l(60%));
+    border-bottom: 1px solid $green;
   }
 }
 
 .input[type="submit"] {
-  background: color-mod($green l(60%));
+  background: $green;
   color: $white;
 
   &:hover {
-    background: color-mod($green l(30%));
+    background: color-mod($green l(50%));
     color: $white;
   }
 
   &:active {
-    background: color-mod($green l(45%));
+    background: color-mod($green l(40%));
     color: $white;
   }
 }

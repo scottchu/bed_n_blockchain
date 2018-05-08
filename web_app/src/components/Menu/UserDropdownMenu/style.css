@@ -14,22 +14,21 @@ $offset: 7px;
 
 .button {
   display: block;
-  background: $black;
-  color: $white;
   padding: 7px 15px;
 
+  border: 1px solid $white;
+  color: $black;
   cursor: pointer;
 
-  transition: background linear $regular-delay,
-              color linear $regular-delay;
+  transition: border-bottom linear $regular-delay;
 
   &:hover {
-    background: $grey;
+    border-bottom: 1px solid $grey;
   }
 }
 
 .container.active .button {
-  background: $grey;
+  border-bottom: 1px solid $black;
 }
 
 .dropdown {
@@ -45,7 +44,8 @@ $offset: 7px;
   background: $white;
   text-align: right;
 
-  transition: opacity linear $regular-delay;
+  transition: opacity linear $regular-delay,
+              visibility linear $regular-delay;
 }
 
 .container.active .dropdown {
@@ -66,14 +66,20 @@ $offset: 7px;
 .link {
   display: block;
   padding: 7px 15px;
+
+  border: 1px solid $white;
   color: $black;
 
   transition: background linear $regular-delay,
               color linear $regular-delay;
 
   &:hover {
-    background: $grey;
+    background: $green;
     color: $white;
+  }
+
+  &:active {
+    background: color-mod($green l(50%));
   }
 }
 

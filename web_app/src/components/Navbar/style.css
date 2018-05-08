@@ -2,9 +2,10 @@
 @import "../../styles/fonts.css";
 
 /* height of the Navbar */
-$height: 80px;
+$height: 60px;
 
 .container {
+  position: relative;
   height: $height;
 }
 

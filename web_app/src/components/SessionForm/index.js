@@ -10,27 +10,29 @@ import style from "./style"
 const SessionForm = ({ onSubmit, style, title }) => {
   return (
     <div className={style.container}>
-      <div className={style.header}>
-        <h1>{title}</h1>
-      </div>
-      <div className={style.body}>
-        <form onSubmit={(e) => {
-          e.preventDefault()
-          e.stopPropagation()
-          onSubmit(e)
-        }}>
-          <section className={style.section}>
-            <EmailInput/>
-          </section>
+      <div className={style.inner}>
+        <div className={style.header}>
+          <h1>{title}</h1>
+        </div>
+        <div className={style.body}>
+          <form onSubmit={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            onSubmit(e)
+          }}>
+            <section className={style.section}>
+              <EmailInput/>
+            </section>
 
-          <section className={style.section}>
-            <PasswordInput />
-          </section>
+            <section className={style.section}>
+              <PasswordInput />
+            </section>
 
-          <section className={style.section}>
-            <SubmitButton />
-          </section>
-        </form>
+            <section className={style.section}>
+              <SubmitButton />
+            </section>
+          </form>
+        </div>
       </div>
     </div>
   )

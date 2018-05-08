@@ -3,4 +3,8 @@
 
 .container {
   padding: 30px 15px;
+
+  height: calc(100% - 80px);
+  box-sizing: border-box;
+  background: #C0DFD9;
 }

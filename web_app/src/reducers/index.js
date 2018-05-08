@@ -1,15 +1,17 @@
 import { combineReducers } from "redux"
 
-import user from "./user"
-import session from "./session"
+import browser from "./browser"
 import search from "./search"
+import session from "./session"
+import user from "./user"
 
 import signOut from "./signOut"
 
 const combinedReducers = combineReducers({
-  user,
+  browser,
+  search,
   session,
-  search
+  user
 })
 
 export default signOut(combinedReducers)
