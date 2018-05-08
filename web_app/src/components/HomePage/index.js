@@ -3,7 +3,7 @@ import React, { Component } from "react"
 class HomePage extends Component {
   render() {
     return (
-      <div id="home" style={{height: 2000}}>
+      <div id="home">
         App/Home
       </div>
     )

@@ -1,12 +1,10 @@
 @import "../../styles/colors.css";
 @import "../../styles/fonts.css";
-
-/* height of the Navbar */
-$height: 60px;
+@import "../../styles/config.css";
 
 .container {
   position: relative;
-  height: $height;
+  height: $navbar-height;
 }
 
 .inner {
@@ -21,7 +19,7 @@ $height: 60px;
   flex-wrap: nowrap;
   align-items: center;
 
-  height: $height;
+  height: $navbar-height;
 
   padding: 0 15px;
 }

@@ -1,12 +1,18 @@
+@import "../../styles/config";
+
 .app {
   position: relative;
   height: 100vh;
 }
 
 .navbar {
+  position: relative;
+  height: $navbar-height;
   z-index: 2;
 }
 
 .content {
+  position: relative;
+  height: calc(100vh - $navbar-height);
   z-index: 0;
 }
