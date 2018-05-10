@@ -5,5 +5,5 @@
   padding: 30px 15px;
   height: 100%;
   box-sizing: border-box;
-  background: #C0DFD9;
+  background: $green;
 }
