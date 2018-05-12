@@ -1,6 +1,6 @@
-defmodule Location do
+defmodule Address do
   @moduledoc """
-  Documentation for Location.
+  Documentation for Address.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule Location do
 
   ## Examples
 
-      iex> Location.hello
+      iex> Address.hello
       :world
 
   """
