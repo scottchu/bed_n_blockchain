@@ -9,6 +9,6 @@ defmodule DB.Repo.Migrations.AddAccountsTable do
       timestamps()
     end
 
-    create(unique_index(:accounts, [:email]))
+    create(index(:accounts, [:email], unique: true))
   end
 end
