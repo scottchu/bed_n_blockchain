@@ -3,6 +3,7 @@ defmodule DB.Repo.Migrations.AddAddressesTable do
 
   def change do
     create table("addresses") do
+      add(:property_id, references("properties"), null: false)
       add(:street1, :string, null: false)
       add(:street2, :string)
       add(:city, :string, null: false)
@@ -15,6 +16,7 @@ defmodule DB.Repo.Migrations.AddAddressesTable do
       timestamps()
     end
 
+    create(index("addresses", [:property_id], unique: true))
     create(index(:addresses, [:city]))
     create(index(:addresses, [:state]))
     create(index(:addresses, [:country]))
