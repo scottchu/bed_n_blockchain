@@ -4,12 +4,14 @@ defmodule User.Account do
   import Ecto.Changeset
   import Ecto.Query
 
+  alias User.Profile
+
   schema "accounts" do
     field(:email, :string)
     field(:password_hash, :string)
     field(:password, :string, virtual: true)
 
-    has_one :profile, User.Profile
+    has_one :profile, Profile
 
     timestamps()
   end
@@ -19,6 +21,7 @@ defmodule User.Account do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:email])
+    |> cast_assoc(:profile)
     |> validate_required([:email])
     |> unique_constraint(:email)
     |> validate_format(:email, @email_format)

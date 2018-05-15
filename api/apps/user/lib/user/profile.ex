@@ -3,10 +3,12 @@ defmodule User.Profile do
 
   import Ecto.Changeset
 
+  alias User.Account
+
   schema "profiles" do
     field(:name, :string)
 
-    belongs_to :account, User.Account
+    belongs_to :account, Account
 
     timestamps()
   end

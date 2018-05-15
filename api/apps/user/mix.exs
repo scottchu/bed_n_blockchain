@@ -11,6 +11,7 @@ defmodule User.MixProject do
       lockfile: "../../mix.lock",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
+      aliases: aliases(),
       deps: deps()
     ]
   end
@@ -28,6 +29,15 @@ defmodule User.MixProject do
       {:db, in_umbrella: true},
       {:comeonin, "~> 4.0"},
       {:argon2_elixir, "~> 1.2"}
+    ]
+  end
+
+  defp aliases do
+    [
+      "ecto.seeds": ["run priv/repo/seeds.exs"],
+      "ecto.setup": ["ecto.create", "ecto.migrate", "ecto.seeds"],
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 end
