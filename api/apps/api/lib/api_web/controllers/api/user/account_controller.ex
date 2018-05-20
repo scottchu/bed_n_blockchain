@@ -1,4 +1,4 @@
-defmodule APIWeb.UserController do
+defmodule APIWeb.User.AccountController do
   use APIWeb, :controller
 
   plug API.Plug.Authorization when action in [:show]
@@ -8,7 +8,7 @@ defmodule APIWeb.UserController do
 
     conn
     |> put_status(:ok)
-    |> render(APIWeb.UserView,
+    |> render(APIWeb.User.AccountView,
       "show.json",
       account: account)
   end

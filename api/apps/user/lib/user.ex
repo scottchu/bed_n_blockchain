@@ -2,8 +2,6 @@ defmodule User do
   alias DB.Repo
   alias User.Account
 
-  import Ecto.Query
-
   import Comeonin.Argon2, only: [checkpw: 2, dummy_checkpw: 0]
 
   def create_account(params \\ %{}) do

@@ -1,4 +1,4 @@
-defmodule APIWeb.UserView do
+defmodule APIWeb.User.AccountView do
   use APIWeb, :view
 
   def render("show.json", %{account: account}) do

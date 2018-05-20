@@ -1,15 +1,35 @@
 defmodule APIWeb.Router do
   use APIWeb, :router
 
+  alias User.{AccountController, ProfileController}
+
   pipeline :api do
-    plug :accepts, ["json"]
+    plug(:accepts, ["json"])
   end
 
   scope "/api", APIWeb do
-    pipe_through :api
+    pipe_through(:api)
 
-    resources "/user", UserController, only: [:show, :create], singleton: true
+    get("/listings", ListingController, :index)
 
-    post "/session", SessionController, :create
+    get("/search", ListingController, :search)
+
+    post("/session", SessionController, :create)
+
+    scope "/user" do
+      resources(
+        "/account",
+        AccountController,
+        only: [:show, :create],
+        singleton: true
+      )
+
+      resources(
+        "/profile",
+        ProfileController,
+        only: [:show, :create, :update],
+        singleton: true
+      )
+    end
   end
 end

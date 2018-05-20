@@ -43,6 +43,7 @@ defmodule API.Mixfile do
       {:cors_plug, "~> 1.1"},
 
       {:db, in_umbrella: true},
+      {:listing, in_umbrella: true},
       {:user, in_umbrella: true}
     ]
   end

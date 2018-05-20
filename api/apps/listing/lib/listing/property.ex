@@ -18,7 +18,8 @@ defmodule Listing.Property do
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:capacity, :name, :price, :type])
+    |> cast(params, [:capacity, :name, :price, :type, :account_id])
+    |> cast_assoc(:address)
     |> validate_required([:capacity, :name, :price, :type])
     |> validate_inclusion(:type, ["house", "condo", "villa", "other"])
     |> validate_number(:capacity, greater_than: 0)

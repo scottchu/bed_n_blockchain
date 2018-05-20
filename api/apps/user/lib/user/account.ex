@@ -2,7 +2,6 @@ defmodule User.Account do
   use Ecto.Schema
 
   import Ecto.Changeset
-  import Ecto.Query
 
   alias User.Profile
 

@@ -1,4 +1,4 @@
-defmodule APIWeb.UserControllerTest do
+defmodule APIWeb.User.AccountControllerTest do
   use APIWeb.ConnCase
   use DB.DataCase
 
@@ -15,7 +15,7 @@ defmodule APIWeb.UserControllerTest do
       response =
         conn
         |> put_req_header("authorization", token)
-        |> get(user_path(conn, :show))
+        |> get(account_path(conn, :show))
         |> json_response(:ok)
 
       assert response["profile"]
@@ -23,7 +23,7 @@ defmodule APIWeb.UserControllerTest do
     end
 
     test "returns unauthorized when not authorized", %{conn: conn} do
-      conn = conn |> get(user_path(conn, :show))
+      conn = conn |> get(account_path(conn, :show))
 
       assert conn.status() == 401
       assert conn.halted()
@@ -35,7 +35,7 @@ defmodule APIWeb.UserControllerTest do
       conn =
         conn
           |> put_req_header("authorization", token)
-          |> get(user_path(conn, :show))
+          |> get(account_path(conn, :show))
 
       assert conn.status() == 401
       assert conn.halted()
@@ -44,7 +44,7 @@ defmodule APIWeb.UserControllerTest do
 
   describe "create" do
     test "creates user account with valid params", %{conn: conn} do
-      post(conn, user_path(conn, :create), @valid_params)
+      post(conn, account_path(conn, :create), @valid_params)
 
       account = Repo.get_by(Account, email: @valid_params[:email])
 
@@ -53,7 +53,7 @@ defmodule APIWeb.UserControllerTest do
     end
 
     test "returns user profile with valid params", %{conn: conn} do
-      conn = post(conn, user_path(conn, :create), @valid_params)
+      conn = post(conn, account_path(conn, :create), @valid_params)
 
       response = json_response(conn, 201)
 
@@ -61,7 +61,7 @@ defmodule APIWeb.UserControllerTest do
     end
 
     test "returns auth token with valid params", %{conn: conn} do
-      conn = post(conn, user_path(conn, :create), @valid_params)
+      conn = post(conn, account_path(conn, :create), @valid_params)
 
       response = json_response(conn, 201)
 
@@ -75,11 +75,11 @@ defmodule APIWeb.UserControllerTest do
     end
 
     test "returns error.json", %{conn: conn} do
-      conn = post(conn, user_path(conn, :create), @invalid_params)
+      conn = post(conn, account_path(conn, :create), @invalid_params)
 
       response =
         conn
-        |> post(user_path(conn, :create), @invalid_params)
+        |> post(account_path(conn, :create), @invalid_params)
         |> json_response(:unprocessable_entity)
 
       assert response["errors"]["email"] == ["can't be blank"]
