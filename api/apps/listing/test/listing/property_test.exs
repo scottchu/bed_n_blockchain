@@ -2,7 +2,6 @@ defmodule Listing.PropertyTest do
   use DB.DataCase
 
   alias Listing.Property
-  alias Postgrex.Point
 
   @valid_attrs %{
     capacity: 2,

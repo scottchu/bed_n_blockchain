@@ -7,7 +7,7 @@ defmodule APIWeb.User.AccountControllerTest do
   @valid_params %{email: "foo@bar.com", password: "s3cr3t"}
   @invalid_params %{email: "", password: ""}
 
-  describe "show" do
+  describe "GET show/2" do
     test "returns user profile when authorized", %{conn: conn} do
       {:ok, account} = User.create_account(@valid_params)
       {:ok, token} = API.Session.sign(account)
@@ -42,7 +42,7 @@ defmodule APIWeb.User.AccountControllerTest do
     end
   end
 
-  describe "create" do
+  describe "POST create/2" do
     test "creates user account with valid params", %{conn: conn} do
       post(conn, account_path(conn, :create), @valid_params)
 

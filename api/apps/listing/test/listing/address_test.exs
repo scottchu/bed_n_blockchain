@@ -1,7 +1,6 @@
 defmodule Listing.AddressTest do
   use DB.DataCase
 
-  alias DB.Repo
   alias Listing.Address
   alias Postgrex.Point
 
