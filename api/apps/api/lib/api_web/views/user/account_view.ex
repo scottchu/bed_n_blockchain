@@ -3,9 +3,8 @@ defmodule APIWeb.User.AccountView do
 
   def render("show.json", %{account: account}) do
     %{
-      profile: %{
-        email: account.email
-      }
+      email: account.email,
+      inserted_at: account.inserted_at
     }
   end
 end

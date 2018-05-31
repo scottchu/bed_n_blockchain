@@ -6,18 +6,7 @@ defmodule User.Factory do
   def create(:account, params) do
     %{
       email: create(:email, params),
-      password: create(:password, params),
-      profile: create(:profile, params)
-    }
-    |> Map.merge(params)
-  end
-
-  def create(:profile, %{profile: profile}) do
-    create(:profile, profile)
-  end
-  def create(:profile, params) do
-    %{
-      name: create(:name, params)
+      password: create(:password, params)
     }
     |> Map.merge(params)
   end
@@ -28,8 +17,4 @@ defmodule User.Factory do
 
   def create(:password, %{password: password}), do: password
   def create(:password, _), do: "123456"
-
-  def create(:name, %{name: name}), do: name
-  def create(:name, %{counter: counter}), do: "user#{counter}"
-  def create(:name, _), do: "user"
 end

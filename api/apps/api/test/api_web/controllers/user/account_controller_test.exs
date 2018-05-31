@@ -8,7 +8,7 @@ defmodule APIWeb.User.AccountControllerTest do
   @invalid_params %{email: "", password: ""}
 
   describe "GET show/2" do
-    test "returns user profile when authorized", %{conn: conn} do
+    test "returns user account when authorized", %{conn: conn} do
       {:ok, account} = User.create_account(@valid_params)
       {:ok, token} = API.Session.sign(account)
 
@@ -18,8 +18,8 @@ defmodule APIWeb.User.AccountControllerTest do
         |> get(account_path(conn, :show))
         |> json_response(:ok)
 
-      assert response["profile"]
-      assert response["profile"]["email"] == account.email
+      assert response
+      assert response["email"] == account.email
     end
 
     test "returns unauthorized when not authorized", %{conn: conn} do
@@ -52,12 +52,12 @@ defmodule APIWeb.User.AccountControllerTest do
       assert account.email == @valid_params[:email]
     end
 
-    test "returns user profile with valid params", %{conn: conn} do
+    test "returns user account with valid params", %{conn: conn} do
       conn = post(conn, account_path(conn, :create), @valid_params)
 
       response = json_response(conn, 201)
 
-      assert response["profile"]["email"] == @valid_params[:email]
+      assert response["account"]["email"] == @valid_params[:email]
     end
 
     test "returns auth token with valid params", %{conn: conn} do

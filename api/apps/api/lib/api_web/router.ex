@@ -23,13 +23,6 @@ defmodule APIWeb.Router do
         only: [:show, :create],
         singleton: true
       )
-
-      resources(
-        "/profile",
-        ProfileController,
-        only: [:show, :create, :update],
-        singleton: true
-      )
     end
   end
 end

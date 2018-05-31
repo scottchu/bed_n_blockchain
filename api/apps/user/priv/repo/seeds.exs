@@ -3,24 +3,15 @@ alias User.{Account, Profile}
 accounts = [
   %{
     email: "scott@email.com",
-    password: "123456",
-    profile: %{
-      name: "admin"
-    }
+    password: "123456"
   },
   %{
     email: "user1@email.com",
-    password: "password",
-    profile: %{
-      name: "user1"
-    }
+    password: "password"
   },
   %{
     email: "user2@email.com",
-    password: "password",
-    profile: %{
-      name: "user2"
-    }
+    password: "password"
   }
 ]
 
