@@ -54,11 +54,6 @@ defmodule Listing.Factory do
     "#{random(1..100)} #{random(["ave", "circle", "cres", "st"])}"
   end
 
-  def create(:street1, %{street1: street1}), do: street1
-  def create(:street1, _) do
-    "#{random(1..100)} #{random(["ave", "circle", "cres", "st"])}"
-  end
-
   def create(:city, %{city: city}), do: city
   def create(:city, _), do: "city"
 

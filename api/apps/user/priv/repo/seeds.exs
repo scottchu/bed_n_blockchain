@@ -2,7 +2,7 @@ alias User.{Account, Profile}
 
 accounts = [
   %{
-    email: "scott@email.com",
+    email: "scott@yroo.com",
     password: "123456"
   },
   %{
