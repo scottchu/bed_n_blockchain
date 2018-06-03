@@ -13,20 +13,12 @@
 
   outline: none;
   border: none;
-  border-bottom: 1px solid $green;
-
-  transition: border-bottom linear $regular-delay;
 
   &::placeholder {
     color: color-mod($black tint(50%));
     opacity: 1;
   }
 
-  &:hover {
-    border-bottom: 1px solid $grey;
-  }
-
-  &:focus {
-    border-bottom: 1px solid $black!important;
-  }
+  &:hover {}
+  &:focus {}
 }
