@@ -6,8 +6,6 @@ defmodule Listing do
 
   @page_size 20
 
-  import IEx
-
   def search(params) do
     query =
       Property
