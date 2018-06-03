@@ -1,4 +1,3 @@
-
 import { TYPE } from "../../actions/user"
 
 const initialState = {

@@ -4,12 +4,12 @@ import { TYPE } from "../../actions/user"
 
 const initialState = null
 
-const cast = pickAll(["email"])
+const cast = pickAll(["email", "inserted_at"])
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case TYPE.setProfile: {
-      return cast(action.profile)
+      return cast(action.account)
     }
 
     default:

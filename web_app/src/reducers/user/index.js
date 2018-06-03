@@ -1,9 +1,9 @@
 import { combineReducers } from "redux"
 
+import account from "./account"
 import auth from "./auth"
-import profile from "./profile"
 
 export default combineReducers({
-  auth,
-  profile
+  account,
+  auth
 })
