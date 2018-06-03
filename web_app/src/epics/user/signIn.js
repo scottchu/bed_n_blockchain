@@ -18,12 +18,15 @@ const format = compose(
 
 const getUserSessionForm = (getState) => () => format(getState())
 
-const responseErrors = path(["response", "errors"])
+const onSignInSuccessful = compose(
+  signInSuccessful,
+  prop("response")
+)
 
-const actionOnSignInFailed = compose(
+const onSignInFailed = compose(
   Observable.of,
   signInFailed,
-  responseErrors
+  prop("message")
 )
 
 const epic = (action$, { getState }, { api }) => {
@@ -31,9 +34,11 @@ const epic = (action$, { getState }, { api }) => {
     .ofType(TYPE.signIn)
     .map(getUserSessionForm(getState))
     .flatMap((data) => {
-      return api.post(api.path.session, data)
-      .map(signInSuccessful)
-      .catch(actionOnSignInFailed)
+      return api
+        .post(api.path.session, data)
+        .map(onSignInSuccessful)
+        .catch(onSignInFailed)
+        .take(1)
     })
 }
 

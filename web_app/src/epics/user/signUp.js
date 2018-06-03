@@ -20,7 +20,12 @@ const getUserSessionForm = (getState) => () => format(getState())
 
 const responseErrors = path(["response", "errors"])
 
-const actionOnSignUpFailed = compose(
+const onSignUpSuccessful = compose(
+  signUpSuccessful,
+  prop("response")
+)
+
+const onSignUpFailed = compose(
   Observable.of,
   signUpFailed,
   responseErrors
@@ -32,8 +37,8 @@ const epic = (action$, { getState }, { api }) => {
     .map(getUserSessionForm(getState))
     .flatMap((data) => {
       return api.post(api.path.user, data)
-      .map(signUpSuccessful)
-      .catch(actionOnSignUpFailed)
+      .map(onSignUpSuccessful)
+      .catch(onSignUpFailed)
       .take(1)
     })
 }

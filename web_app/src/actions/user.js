@@ -19,9 +19,7 @@ export const signUp = () => {
   }
 }
 
-export const signUpSuccessful = ({ response }) => {
-  const { auth, profile } = response
-
+export const signUpSuccessful = ({ auth, profile }) => {
   return {
     type: TYPE.signUpSuccessful,
     auth,
@@ -42,9 +40,7 @@ export const signIn = () => {
   }
 }
 
-export const signInSuccessful = ({ response }) => {
-  const { auth, profile } = response
-
+export const signInSuccessful = ({ auth, profile }) => {
   return {
     type: TYPE.signInSuccessful,
     auth,
