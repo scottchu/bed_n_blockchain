@@ -1,0 +1,25 @@
+.container {
+  padding: 15px;
+}
+
+.body {
+  margin-bottom: 15px;
+}
+
+.footer {
+
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+
+}

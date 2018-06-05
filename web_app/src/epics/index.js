@@ -1,6 +1,7 @@
 import { combineEpics } from "redux-observable"
 
 import browser from "./browser"
+import listings from "./listings"
 import user from "./user"
 
 // ====================================
@@ -9,6 +10,7 @@ import user from "./user"
 
 const epics = combineEpics(
   browser,
+  listings,
   user
 )
 

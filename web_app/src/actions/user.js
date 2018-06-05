@@ -10,7 +10,7 @@ export const TYPE = {
   signOut: "USER_SIGN_OUT",
 
   setAuthToken: "USER_SET_AUTH_TOKEN",
-  setProfile: "USER_SET_PROFILE"
+  setAccount: "USER_SET_ACCOUNT"
 }
 
 export const signUp = () => {
@@ -19,11 +19,11 @@ export const signUp = () => {
   }
 }
 
-export const signUpSuccessful = ({ auth, profile }) => {
+export const signUpSuccessful = ({ account, auth }) => {
   return {
     type: TYPE.signUpSuccessful,
-    auth,
-    profile
+    account,
+    auth
   }
 }
 
@@ -40,11 +40,11 @@ export const signIn = () => {
   }
 }
 
-export const signInSuccessful = ({ auth, profile }) => {
+export const signInSuccessful = ({ account, auth }) => {
   return {
     type: TYPE.signInSuccessful,
-    auth,
-    profile
+    account,
+    auth
   }
 }
 
@@ -68,9 +68,9 @@ export const setAuthToken = (token) => {
   }
 }
 
-export const setProfile = (profile) => {
+export const setAccount = (account) => {
   return {
-    type: TYPE.setProfile,
-    profile
+    type: TYPE.setAccount,
+    account
   }
 }

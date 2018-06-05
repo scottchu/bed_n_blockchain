@@ -8,7 +8,7 @@ const cast = pickAll(["email", "inserted_at"])
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case TYPE.setProfile: {
+    case TYPE.setAccount: {
       return cast(action.account)
     }
 

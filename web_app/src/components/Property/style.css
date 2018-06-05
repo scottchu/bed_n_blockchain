@@ -1,0 +1,16 @@
+@import "../../styles/colors.css";
+@import "../../styles/fonts.css";
+
+.container {
+  border: 1px solid $green;
+  background: $white;
+  color: $black;
+
+  min-height: 300px;
+
+  transition: background linear 300ms;
+
+  &:hover {
+    background: color-mod($green tint(50%));
+  }
+}

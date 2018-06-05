@@ -5,7 +5,7 @@ import { get as getHeaders } from "../headers"
 
 const method = "GET"
 
-const appendTo = (s) => (k, v) => s.append(k, v)
+const appendTo = (s) => (v, k) => s.append(k, v)
 
 const buildURL = (urlString, query) => {
   let url = new URL(urlString)

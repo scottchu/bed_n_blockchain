@@ -36,7 +36,7 @@ const epic = (action$, { getState }, { api }) => {
     .ofType(TYPE.signUp)
     .map(getUserSessionForm(getState))
     .flatMap((data) => {
-      return api.post(api.path.user, data)
+      return api.post(api.path.userAccount, data)
       .map(onSignUpSuccessful)
       .catch(onSignUpFailed)
       .take(1)

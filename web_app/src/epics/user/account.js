@@ -1,17 +1,16 @@
 import { combineEpics } from "redux-observable"
 import { Observable } from "rxjs"
-
-import { equals, pathOr, propOr } from "ramda"
+import { compose, equals, pathOr, propOr } from "ramda"
 
 import {
   TYPE,
   signInSuccessful,
   signUpSuccessful,
-  setProfile,
+  setAccount,
   signOut
 } from "../../actions/user"
 
-const profile = propOr(null, "profile")
+const account = propOr(null, "account")
 
 /*
   Get profile and return it on sign in / sign up successful
@@ -21,25 +20,30 @@ const profile = propOr(null, "profile")
 const sessionCreated = (action$) => {
   return action$
     .ofType(TYPE.signInSuccessful, TYPE.signUpSuccessful)
-    .map(profile)
-    .map(setProfile)
+    .map(account)
+    .map(setAccount)
 }
 
-const getProfile = pathOr(null, ["response", "profile"])
+const getAccount = pathOr(null, ["response", "account"])
 
-const fetchProfile = (action$, store, { api, signedIn }) => {
+const onFetchAccountFail = compose(
+  Observable.of,
+  signOut
+)
+
+const fetchAccount = (action$, store, { api, signedIn }) => {
   return signedIn
     .filter(equals(true))
     .flatMap(() => {
-      return api.get(api.path.user)
-        .map(getProfile)
-        .map(setProfile)
-        .catch(() => Observable.of(signOut()))
+      return api.get(api.path.userAccount)
+        .map(getAccount)
+        .map(setAccount)
+        .catch(onFetchAccountFail)
         .take(1)
     })
 }
 
 export default combineEpics(
   sessionCreated,
-  fetchProfile
+  fetchAccount
 )
