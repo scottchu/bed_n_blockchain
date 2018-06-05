@@ -19,7 +19,7 @@ defmodule APIWeb.User.AccountControllerTest do
         |> json_response(:ok)
 
       assert response
-      assert response["email"] == account.email
+      assert response["account"]["email"] == account.email
     end
 
     test "returns unauthorized when not authorized", %{conn: conn} do

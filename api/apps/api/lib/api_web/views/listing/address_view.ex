@@ -3,7 +3,7 @@ defmodule APIWeb.Listing.AddressView do
 
   alias APIWeb.Listing.{PropertyView, AddressView}
 
-  def render("show.json", %{address: address}) do
+  def render("address.json", %{address: address}) do
     %{
       street1: address.street1,
       street2: address.street2,

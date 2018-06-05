@@ -8,9 +8,7 @@ defmodule APIWeb.User.AccountController do
 
     conn
     |> put_status(:ok)
-    |> render(APIWeb.User.AccountView,
-      "show.json",
-      account: account)
+    |> render("show.json", account: account)
   end
 
   def create(conn, params) do

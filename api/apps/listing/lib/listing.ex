@@ -7,6 +7,8 @@ defmodule Listing do
   @page_size 20
 
   def search(params) do
+    current_page = get_page(params)
+
     query =
       Property
       |> order_by(desc: :updated_at)
@@ -14,21 +16,26 @@ defmodule Listing do
 
     properties =
       query
-      |> paginate(params)
+      |> paginate(current_page)
       |> Repo.all
 
-    pages =
+    total_pages =
       query
       |> Repo.aggregate(:count, :id)
       |> Kernel./(@page_size)
       |> Float.ceil
 
-    {:ok, %{properties: properties, pages: pages}}
+    response = %{
+      properties: properties,
+      current_page: current_page,
+      total_pages: total_pages
+    }
+    {:ok, response}
   end
 
-  defp paginate(query, params) do
+  defp paginate(query, current_page) do
     query
-    |> offset(^calc_start(get_page(params)))
+    |> offset(^calc_start(current_page))
     |> limit(^@page_size)
   end
 
