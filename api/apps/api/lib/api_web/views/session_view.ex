@@ -5,11 +5,13 @@ defmodule APIWeb.SessionView do
 
   def render("show.json", %{account: account, token: token}) do
     %{
-      auth: %{
-        token: token
-      },
-      account: render_one(account, AccountView, "show.json")
+      auth: render("auth.json", %{token: token}),
+      account: render_one(account, AccountView, "account.json")
     }
+  end
+
+  def render("auth.json", %{token: token}) do
+    %{token: token}
   end
 
   def render("errors.json", %{errors: errors}) do

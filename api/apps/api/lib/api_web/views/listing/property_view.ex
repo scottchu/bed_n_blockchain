@@ -4,18 +4,31 @@ defmodule APIWeb.Listing.PropertyView do
   alias APIWeb.Listing.{PropertyView, AddressView}
   alias APIWeb.User.AccountView
 
-  def render("index.json", %{properties: properties, pages: pages}) do
+  def render(
+    "index.json",
+    %{
+      properties: properties,
+      current_page: current_page,
+      total_pages: total_pages
+    }) do
     %{
       properties: render_many(
         properties,
         PropertyView,
-        "show.json"
+        "property.json"
       ),
-      totalPages: pages
+      currentPage: current_page,
+      totalPages: total_pages
     }
   end
 
   def render("show.json", %{property: property}) do
+    %{
+      property: render("property.json", %{property: property})
+    }
+  end
+
+  def render("property.json", %{property: property}) do
     %{
       id: property.id,
       capacity: property.capacity,
@@ -25,12 +38,12 @@ defmodule APIWeb.Listing.PropertyView do
       address: render_one(
         property.address,
         AddressView,
-        "show.json"
+        "address.json"
       ),
       account: render_one(
         property.account,
         AccountView,
-        "show.json"
+        "account.json"
       ),
       inserted_at: property.inserted_at,
       updated_at: property.updated_at
