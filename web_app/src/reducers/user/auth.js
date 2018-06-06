@@ -7,10 +7,12 @@ const initialState = {
 
 const reducer = (state = initialState, { type, token }) => {
   switch (type) {
-    case TYPE.loadAuthToken:
-    case TYPE.setAuthToken: {
-      const signedIn = token != null
-      return { token, signedIn }
+    case TYPE.setAuthToken:
+    case TYPE.restoreAuthToken: {
+      return {
+        token,
+        signedIn: (token != null)
+      }
     }
 
     default:
