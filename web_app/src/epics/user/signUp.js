@@ -1,46 +1,44 @@
-import { Observable } from "rxjs"
+import { ofType } from "redux-observable"
+import { of } from "rxjs"
+import { catchError, map, switchMap, take } from "rxjs/operators"
 
-import { always, compose, mapObjIndexed, path, pick, prop } from "ramda"
+import { always, mapObjIndexed, path, pipe, pick, prop } from "ramda"
 
 import { TYPE, signUpSuccessful, signUpFailed } from "../../actions/user"
 
-const sessionForm = path(["session", "form"])
-
-const castParams = pick(["email", "password"])
-
-const mapValues = mapObjIndexed(prop("value"))
-
-const format = compose(
-  mapValues,
-  castParams,
-  sessionForm
+const sessionParams = pipe(
+  path(["session", "form"]),
+  pick(["email", "password"]),
+  mapObjIndexed(prop("value"))
 )
 
-const getUserSessionForm = (getState) => () => format(getState())
-
-const responseErrors = path(["response", "errors"])
-
-const onSignUpSuccessful = compose(
-  signUpSuccessful,
-  prop("response")
+const onSignUpSuccessful = pipe(
+  prop("response"),
+  signUpSuccessful
 )
 
-const onSignUpFailed = compose(
-  Observable.of,
+const onSignUpFailed = pipe(
+  prop("message"),
   signUpFailed,
-  responseErrors
+  of
 )
 
-const epic = (action$, { getState }, { api }) => {
+const epic = (action$, state$, { api }) => {
   return action$
-    .ofType(TYPE.signUp)
-    .map(getUserSessionForm(getState))
-    .flatMap((data) => {
-      return api.post(api.path.userAccount, data)
-      .map(onSignUpSuccessful)
-      .catch(onSignUpFailed)
-      .take(1)
-    })
+    .pipe(
+      ofType(TYPE.signIn),
+      switchMap(() => state$),
+      map(sessionParams),
+      switchMap((data) => {
+        return api
+          .post(api.path.userAccount, data)
+          .pipe(
+            map(onSignUpSuccessful),
+            catchError(onSignUpFailed),
+            take(1)
+          )
+      })
+    )
 }
 
 export default epic

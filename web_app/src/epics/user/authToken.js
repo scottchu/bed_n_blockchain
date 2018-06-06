@@ -1,5 +1,6 @@
-import { combineEpics } from "redux-observable"
-import { Observable } from "rxjs"
+import { combineEpics, ofType } from "redux-observable"
+import { of } from "rxjs"
+import { filter, map, ignoreElements, tap } from "rxjs/operators"
 
 import { complement, isNil, pathOr } from "ramda"
 
@@ -7,7 +8,8 @@ import {
   TYPE,
   signInSuccessful,
   signUpSuccessful,
-  setAuthToken
+  setAuthToken,
+  restoreAuthToken
 } from "../../actions/user"
 
 const authToken = pathOr(null, ["auth", "token"])
@@ -24,12 +26,14 @@ const isNotNil = complement(isNil)
 
   Returns: [UserSetAuthToken]
 */
-const setAuthTokenOnSessionCreated = (action$, _, { cookies }) => {
+const setAuthTokenOnSessionCreated = (action$, _state$, { cookies }) => {
   return action$
-    .ofType(TYPE.signInSuccessful, TYPE.signUpSuccessful)
-    .map(authToken)
-    .do(writeTo(cookies))
-    .map(setAuthToken)
+    .pipe(
+      ofType(TYPE.signInSuccessful, TYPE.signUpSuccessful),
+      map(authToken),
+      tap(writeTo(cookies)),
+      map(setAuthToken)
+    )
 }
 
 /*
@@ -37,11 +41,13 @@ const setAuthTokenOnSessionCreated = (action$, _, { cookies }) => {
 
   Returns: []
 */
-const delAuthTokenOnSessionDestroyed = (action$, _, { cookies }) => {
+const delAuthTokenOnSessionDestroyed = (action$, _state$, { cookies }) => {
   return action$
-    .ofType(TYPE.signOut)
-    .do(delFrom(cookies))
-    .ignoreElements()
+    .pipe(
+      ofType(TYPE.signOut),
+      tap(delFrom(cookies)),
+      ignoreElements()
+    )
 }
 
 /*
@@ -49,17 +55,17 @@ const delAuthTokenOnSessionDestroyed = (action$, _, { cookies }) => {
 
   Returns: [UserSetAuthToken]
 */
-const getAuthTokenOnPageLoad = (action$, _, { api, cookies, signedIn }) => {
-  return Observable
-    .of(getFrom(cookies))
-    .filter(isNotNil)
-    .do(api.headers.set("Authorization"))
-    .do(() => signedIn.next(true))
-    .map(setAuthToken)
+const getAuthTokenOnStart = (action$, _state$, { api, cookies }) => {
+  return of(getFrom(cookies))
+    .pipe(
+      filter(isNotNil),
+      tap(api.headers.set("Authorization")),
+      map(restoreAuthToken)
+    )
 }
 
 export default combineEpics(
   setAuthTokenOnSessionCreated,
   delAuthTokenOnSessionDestroyed,
-  getAuthTokenOnPageLoad
+  getAuthTokenOnStart
 )

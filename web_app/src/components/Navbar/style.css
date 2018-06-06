@@ -22,6 +22,8 @@
   height: $navbar-height;
 
   padding: 0 15px;
+
+  background: $white;
 }
 
 /* Each column is 15px apart from the the others  */

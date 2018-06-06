@@ -1,6 +1,7 @@
-import { combineEpics } from "redux-observable"
-import { Observable } from "rxjs"
-import { compose, equals, pathOr, propOr } from "ramda"
+import { combineEpics, ofType } from "redux-observable"
+import { of } from "rxjs"
+import { catchError, filter, map, switchMap, take, tap } from "rxjs/operators"
+import { complement, equals, isNil, pathOr, pipe, propOr } from "ramda"
 
 import {
   TYPE,
@@ -17,33 +18,41 @@ const account = propOr(null, "account")
 
   Returns: [UserSetProfile]
 */
-const sessionCreated = (action$) => {
+const onSessionCreated = (action$) => {
   return action$
-    .ofType(TYPE.signInSuccessful, TYPE.signUpSuccessful)
-    .map(account)
-    .map(setAccount)
+    .pipe(
+      ofType(TYPE.signInSuccessful, TYPE.signUpSuccessful),
+      map(account),
+      map(setAccount)
+    )
 }
 
-const getAccount = pathOr(null, ["response", "account"])
+const isNotNil = complement(isNil)
 
-const onFetchAccountFail = compose(
-  Observable.of,
-  signOut
-)
+const responseAccount = pathOr(null, ["response", "account"])
 
-const fetchAccount = (action$, store, { api, signedIn }) => {
-  return signedIn
-    .filter(equals(true))
-    .flatMap(() => {
-      return api.get(api.path.userAccount)
-        .map(getAccount)
-        .map(setAccount)
-        .catch(onFetchAccountFail)
-        .take(1)
-    })
+const onFetchAccountSuccess = pipe(responseAccount, setAccount)
+
+const onFetchAccountFail = pipe(signOut, of)
+
+const onSessionRestored = (action$, _state$, { api }) => {
+  return action$
+    .pipe(
+      ofType(TYPE.restoreAuthToken),
+      filter(isNotNil),
+      switchMap(() => {
+        return api
+          .get(api.path.userAccount)
+          .pipe(
+            map(onFetchAccountSuccess),
+            catchError(onFetchAccountFail),
+            take(1)
+          )
+      })
+    )
 }
 
 export default combineEpics(
-  sessionCreated,
-  fetchAccount
+  onSessionCreated,
+  onSessionRestored
 )

@@ -1,34 +1,44 @@
-import { Observable } from "rxjs"
-import { compose, path, prop, propOr } from "ramda"
+import { ofType } from "redux-observable"
+import { of } from "rxjs"
+import { catchError, map, switchMap, take, takeUntil } from "rxjs/operators"
+
+import { pipe, path, prop, propOr } from "ramda"
 
 import { TYPE, fetchComplete, fetchFail } from "../../actions/listings"
 
-const onFetchComplete = compose(
-  fetchComplete,
-  prop("response")
+const onFetchComplete = pipe(
+  prop("response"),
+  fetchComplete
 )
 
-const onFetchFail = compose(
-  Observable.of,
+const onFetchFail = pipe(
+  path(["response", "errors"]),
   fetchFail,
-  path(["response", "errors"])
+  of
 )
+
+const dataWithDefault = propOr({}, "data")
 
 const epic = (action$, _store, { api }) => {
   const stopFetching$ = action$
-    .ofType(TYPE.fetchStop)
+    .pipe(ofType(TYPE.fetchStop))
 
   return action$
-    .ofType(TYPE.fetchStart)
-    .map(propOr({}, "data"))
-    .flatMap((data) => {
-      return api
-        .get(api.path.listings, data)
-        .map(onFetchComplete)
-        .catch(onFetchFail)
-        .take(1)
-        .takeUntil(stopFetching$)
-    })
+    .pipe(
+      ofType(TYPE.fetchStart),
+      map(dataWithDefault),
+      switchMap((data) => {
+        return api
+          .get(api.path.listings, data)
+          .pipe(
+            map(onFetchComplete),
+            catchError(onFetchFail),
+            take(1),
+            takeUntil(stopFetching$)
+          )
+      })
+    )
+
 }
 
 export default epic

@@ -1,5 +1,6 @@
-import { combineEpics } from "redux-observable"
-import { Observable, Scheduler } from "rxjs"
+import { combineEpics, ofType } from "redux-observable"
+import { animationFrameScheduler, fromEvent } from "rxjs"
+import { debounceTime, map, sampleTime } from 'rxjs/operators'
 
 import {
   TYPE,
@@ -15,12 +16,12 @@ import {
 const scrollY = (window) => () => window.scrollY
 
 const windowScrollStart = (action$, _, { window }) => {
-  const animationFrame$ = Observable.of(10, Scheduler.animationFrame)
-
-  return Observable.fromEvent(window, "scroll")
-    .throttle(() => animationFrame$)
-    .map(scrollY(window))
-    .map(scrollStart)
+  return fromEvent(window, "scroll")
+    .pipe(
+      sampleTime(10, animationFrameScheduler),
+      map(scrollY(window)),
+      map(scrollStart)
+    )
 }
 
 /*
@@ -31,9 +32,11 @@ const windowScrollStart = (action$, _, { window }) => {
 */
 const windowScrollStop = (action$) => {
   return action$
-    .ofType(TYPE.scrollStart)
-    .debounceTime(200)
-    .map(scrollStop)
+    .pipe(
+      ofType(TYPE.scrollStart),
+      debounceTime(60, animationFrameScheduler),
+      map(scrollStop)
+    )
 }
 
 export default combineEpics(
