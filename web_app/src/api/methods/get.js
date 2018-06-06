@@ -1,4 +1,4 @@
-import { Observable } from "rxjs"
+import { ajax } from 'rxjs/ajax'
 import { forEachObjIndexed } from "ramda"
 
 import { get as getHeaders } from "../headers"
@@ -16,13 +16,11 @@ const buildURL = (urlString, query) => {
 }
 
 const get = (url, query = {}) => {
-  const request = {
+  return ajax({
     headers: getHeaders(),
     method,
     url: buildURL(url, query)
-  }
-
-  return Observable.ajax(request)
+  })
 }
 
 export default get

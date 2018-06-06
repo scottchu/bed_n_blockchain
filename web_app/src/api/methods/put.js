@@ -1,17 +1,15 @@
-import { Observable } from "rxjs"
+import { ajax } from 'rxjs/ajax'
 import { get as getHeaders } from "../headers"
 
 const method = "PUT"
 
 export const put = (url, body) => {
-  const request = {
+  return ajax(request = {
     headers: getHeaders(),
     method,
     url,
     body
-  }
-
-  return Observable.ajax(request)
+  })
 }
 
 export default put
