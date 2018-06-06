@@ -10,6 +10,7 @@ export const TYPE = {
   signOut: "USER_SIGN_OUT",
 
   setAuthToken: "USER_SET_AUTH_TOKEN",
+  restoreAuthToken: "USER_RESTORE_AUTH_TOKEN",
   setAccount: "USER_SET_ACCOUNT"
 }
 
@@ -64,6 +65,13 @@ export const signOut = () => {
 export const setAuthToken = (token) => {
   return {
     type: TYPE.setAuthToken,
+    token
+  }
+}
+
+export const restoreAuthToken = (token) => {
+  return {
+    type: TYPE.restoreAuthToken,
     token
   }
 }
