@@ -5,10 +5,9 @@ export const TYPE = {
   click: "BROWSER_CLICK"
 }
 
-export const scrollStart = (y) => {
+export const scrollStart = () => {
   return {
-    type: TYPE.scrollStart,
-    y
+    type: TYPE.scrollStart
   }
 }
 

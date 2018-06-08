@@ -1,6 +1,7 @@
 import { combineEpics, ofType } from "redux-observable"
-import { animationFrameScheduler, fromEvent } from "rxjs"
-import { debounceTime, map, sampleTime } from 'rxjs/operators'
+import { animationFrameScheduler, fromEvent, merge } from "rxjs"
+import { debounceTime, distinctUntilChanged, map, mapTo, sampleTime, startWith } from 'rxjs/operators'
+import { always, ifElse, equals } from "ramda"
 
 import {
   TYPE,
@@ -13,33 +14,38 @@ import {
 
   Returns: [scrollStart]
 */
-const scrollY = (window) => () => window.scrollY
 
-const windowScrollStart = (action$, _, { window }) => {
-  return fromEvent(window, "scroll")
+const windowScroll = (action$, _, { window }) => {
+  const scrollAction = ifElse(
+    equals(true),
+    always(scrollStart()),
+    always(scrollStop())
+  )
+
+  const scroll$ = fromEvent(window, "scroll")
     .pipe(
-      sampleTime(10, animationFrameScheduler),
-      map(scrollY(window)),
-      map(scrollStart)
+      sampleTime(60, animationFrameScheduler)
     )
-}
 
-/*
-  Observe scrollStart events with debounce 200ms then consider
-  window scroll stopped
-
-  Returns: [scrollStop]
-*/
-const windowScrollStop = (action$) => {
-  return action$
+  const start$ = scroll$
     .pipe(
-      ofType(TYPE.scrollStart),
+      mapTo(true)
+    )
+
+  const stop$ = scroll$
+    .pipe(
       debounceTime(60, animationFrameScheduler),
-      map(scrollStop)
+      mapTo(false)
+    )
+
+  return merge(start$, stop$)
+    .pipe(
+      startWith(false),
+      distinctUntilChanged(),
+      map(scrollAction)
     )
 }
 
 export default combineEpics(
-  windowScrollStart,
-  windowScrollStop
+  windowScroll
 )
