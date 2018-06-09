@@ -1,6 +1,7 @@
 import { TYPE } from "../../actions/browser"
 
 const initialState = {
+  offsetY: 0,
   scrolling: false
 }
 
@@ -15,6 +16,11 @@ const reducer = (state = initialState, action) => {
     case TYPE.scrollStop: {
       return {...state,
         scrolling: false
+      }
+    }
+    case TYPE.updateOffsetY: {
+      return {...state,
+        offsetY: action.offsetY
       }
     }
     default: {

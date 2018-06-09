@@ -6,11 +6,28 @@
   background: $white;
   color: $black;
 
-  min-height: 300px;
+  height: 300px;
 
   transition: background linear 300ms;
 
   &:hover {
     background: color-mod($green tint(50%));
   }
+}
+
+.header {
+  height: 60%;
+}
+
+.body {
+  height: 40%;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

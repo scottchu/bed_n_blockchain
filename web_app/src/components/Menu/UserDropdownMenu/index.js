@@ -1,32 +1,45 @@
 import React, { Component } from "react"
 import { NavLink } from "react-router-dom"
 
+import { Subject } from "rxjs"
+import { distinctUntilChanged, filter, startWith, tap } from "rxjs/operators"
+import { equals, isNil } from "ramda"
+
 import { withStyle } from "../../../common/css"
 import style from "./style"
 
 class UserDropdownMenu extends Component {
+
+  scrolling$ = new Subject()
+
+  listenToScroll = () => {
+    return this.scrolling$
+      .pipe(
+        distinctUntilChanged(),
+        filter(equals(false)),
+        tap(this.turn)
+      )
+      .subscribe()
+  }
+
   state = {
     active: false
   }
 
   switch = () => {
-    return this.setState((state) => {
-      return {...state,
-        active: !state.active
-      }
-    })
+    return this.turn(!this.state.active)
   }
 
-  turn = (bool) => {
-    return this.setState((state) => {
-      return {...state,
-        active: bool
-      }
-    })
+  turn = (active) => {
+    return this.setState((state) => ({...state, active}))
   }
 
   componentWillUpdate({ scrolling }) {
-    (scrolling && this.state.active && this.turn(false))
+    this.scrolling$.next(scrolling)
+  }
+
+  componentDidMount() {
+    this.listenToScroll()
   }
 
   render() {
@@ -53,16 +66,16 @@ class UserDropdownMenu extends Component {
               <NavLink
                 className={style.link}
                 activeClassName={style.active}
-                to="/account">
-                Account
+                to="/">
+                Home
               </NavLink>
             </li>
             <li className={style.item}>
               <NavLink
                 className={style.link}
                 activeClassName={style.active}
-                to="/profile">
-                Profile
+                to="/account">
+                Account
               </NavLink>
             </li>
             <li className={style.item}>

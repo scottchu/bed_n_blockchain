@@ -1,12 +1,13 @@
 import { combineEpics, ofType } from "redux-observable"
 import { animationFrameScheduler, fromEvent, merge } from "rxjs"
 import { debounceTime, distinctUntilChanged, map, mapTo, sampleTime, startWith } from 'rxjs/operators'
-import { always, ifElse, equals } from "ramda"
+import { always, ifElse, equals, prop } from "ramda"
 
 import {
   TYPE,
   scrollStart,
-  scrollStop
+  scrollStop,
+  updateOffsetY
 } from "../../actions/browser"
 
 /*
@@ -15,26 +16,37 @@ import {
   Returns: [scrollStart]
 */
 
-const windowScroll = (action$, _, { window }) => {
+const offsetYOnWindowScroll = (action$, _, { window }) => {
+  const offsetY = (window) => (_evevnt) => prop("scrollY", window)
+
+  return fromEvent(window, "scroll")
+    .pipe(
+      sampleTime(1, animationFrameScheduler),
+      map(offsetY(window)),
+      map(updateOffsetY)
+    )
+}
+
+const scrollingOnWindowScroll = (action$) => {
   const scrollAction = ifElse(
     equals(true),
     always(scrollStart()),
     always(scrollStop())
   )
 
-  const scroll$ = fromEvent(window, "scroll")
+  const updateOffsetY$ = action$
     .pipe(
-      sampleTime(60, animationFrameScheduler)
+      ofType(TYPE.updateOffsetY)
     )
 
-  const start$ = scroll$
+  const start$ = updateOffsetY$
     .pipe(
       mapTo(true)
     )
 
-  const stop$ = scroll$
+  const stop$ = updateOffsetY$
     .pipe(
-      debounceTime(60, animationFrameScheduler),
+      debounceTime(120, animationFrameScheduler),
       mapTo(false)
     )
 
@@ -47,5 +59,6 @@ const windowScroll = (action$, _, { window }) => {
 }
 
 export default combineEpics(
-  windowScroll
+  offsetYOnWindowScroll,
+  scrollingOnWindowScroll
 )
