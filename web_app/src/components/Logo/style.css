@@ -1,0 +1,30 @@
+@import "../../styles/colors.css";
+@import "../../styles/fonts.css";
+
+.container {
+  & * {
+    box-sizing: border-box;
+  }
+}
+
+.logo {
+  padding-right: 15px;
+  letter-spacing: -2px;
+   & > span {
+    margin: 0px;
+    padding: 0px;
+    line-height: 1em;
+   }
+}
+
+.char {
+  color: $black;
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+.sym {
+  color: $black;
+  font-size: 12px;
+  font-weight: bolder;
+}
