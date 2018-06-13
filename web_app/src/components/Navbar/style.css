@@ -5,6 +5,10 @@
 .container {
   position: relative;
   height: $navbar-height;
+
+  & * {
+    box-sizing: border-box;
+  }
 }
 
 .inner {
@@ -18,21 +22,35 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: center;
 
   height: $navbar-height;
 
   padding: 0 15px;
 
   background: $white;
+
+  transition: box-shadow linear 250ms;
+
+  &.shadow {
+    box-shadow: 0px 6px 12px -6px $black;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  flex: 1 1 auto;
+
+  max-width: 1200px;
 }
 
 /* Each column is 15px apart from the the others  */
 .column {
-  margin-right: 15px;
 
-  &:last-of-type {
-    margin-right: 0px;
-  }
 }
 
 .flex {

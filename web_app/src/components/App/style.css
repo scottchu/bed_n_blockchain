@@ -5,6 +5,11 @@
   height: 100vh;
 }
 
+.app-inner {
+  max-width: 1200px;
+  margin: 0px auto;
+}
+
 .navbar {
   position: relative;
   height: $navbar-height;

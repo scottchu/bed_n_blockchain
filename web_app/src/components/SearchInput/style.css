@@ -9,8 +9,6 @@
 
   padding-left: 7px;
 
-  font-size: 1.5em;
-
   outline: none;
   border: none;
 
@@ -21,4 +19,20 @@
 
   &:hover {}
   &:focus {}
+
+  @media (min-width: 601px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 12px;
+  }
 }
