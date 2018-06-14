@@ -11,7 +11,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, { property }) => {
-  console.log(property)
   return {
     book: () => dispatch(bookProperty(property.id))
   }
