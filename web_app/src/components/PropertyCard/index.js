@@ -44,7 +44,7 @@ const sample = converge(nth, [randomIndex, identity])
 const dot = join(" · ")
 const space = join(" ")
 
-const Property = ({ property, style }) => {
+const Property = ({ book, property, style }) => {
   const location = space([city(property), country(property)])
   const info = dot([type(property), location])
 
@@ -56,15 +56,24 @@ const Property = ({ property, style }) => {
           style={{ backgroundImage: sample(placeholders) }} />
       </div>
       <div className={style.content}>
-        <div className={style.info}>
-          {info}
-        </div>
+        <div className={style.left}>
+          <div className={style.info}>
+            {info}
+          </div>
 
-        <div className={style.name}>
-          {name(property)}
+          <div className={style.name}>
+            {name(property)}
+          </div>
+          <div className={style.price}>
+            ${price(property)} per night
+          </div>
         </div>
-        <div className={style.price}>
-          ${price(property)} per night
+        <div className={style.right}>
+            <button
+              className={style.bookButton}
+              onClick={book}>
+              Book
+            </button>
         </div>
       </div>
     </div>

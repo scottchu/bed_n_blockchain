@@ -2,25 +2,24 @@ import React from "react"
 import { map } from "ramda"
 
 import Pagination from "../../containers/Pagination"
-import Property from "../Property"
 
 import { withStyle } from "../../common/css"
 import style from "./style"
 
-const renderProperty = (className) => (property) => {
+const renderProperty = (PropertyComponent, className) => (property) => {
   return (
     <li className={className} key={property.id}>
-      <Property property={property} />
+      <PropertyComponent property={property} />
     </li>
   )
 }
 
-const Properties = ({ fetch, properties, sytle }) => {
+const Properties = ({ Property, fetch, properties, sytle }) => {
   return (
     <div className={style.container}>
       <div className={style.body}>
         <ul className={style.grid}>
-          {map(renderProperty(style.item), properties)}
+          {map(renderProperty(Property, style.item), properties)}
         </ul>
       </div>
       <div className={style.footer}>

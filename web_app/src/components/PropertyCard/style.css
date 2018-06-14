@@ -1,0 +1,115 @@
+@import "../../styles/colors.css";
+@import "../../styles/fonts.css";
+
+.container {
+  &, & * {
+    box-sizing: border-box;
+  }
+
+  position: relative;
+  background: $white;
+  color: $black;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 240px;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+
+  width: 100%;
+  padding: 7px 0px;
+}
+
+.left {
+  flex: 1 1 auto;
+}
+
+.right {
+  flex: 0 0 auto;
+}
+
+.info {
+  position: relative;
+  margin-bottom: 2px;
+
+  color: $black;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.name {
+  position: relative;
+  margin-bottom: 4px;
+
+  width: 100%;
+  color: $black;
+  font-weight: bolder;
+  font-size: 16px;
+}
+
+.price {
+  position: relative;
+  width: 100%;
+  color: $black;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.book-button {
+  padding: 7px 15px;
+  border: 1px solid $grey;
+  outline: none;
+
+  background-color: $white;
+  color: $black;
+  font-weight: bolder;
+  font-size: 16px;
+
+  transition: background-color linear 250ms;
+
+  &:hover {
+    background-color: color-mod($green tint(50%));
+  }
+
+  &:active {
+    background-color: color-mod($green tint(0%));
+  }
+}
+
+.text {
+  color: $white;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  z-index: 1;
+}
+
+.dark-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  background-color: $black;
+  opacity: 0.5;
+  z-index: -1;
+}

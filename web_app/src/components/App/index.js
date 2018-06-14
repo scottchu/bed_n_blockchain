@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom"
 import AccountPage from "../AccountPage"
 import HomePage from "../HomePage"
 import NotFound from "../NotFound"
+import PropertyPage from "../PropertyPage"
 import SignInPage from "../SignInPage"
 import SignUpPage from "../SignUpPage"
 
@@ -24,12 +25,28 @@ class App extends Component {
           </div>
           <div className={style.content}>
             <Switch>
-              <Route exact path="/" component={HomePage}/>
-              <Route path="/account" component={AccountPage}/>
-              <Route path="/sign-in" component={SignInPage}/>
-              <Route path="/sign-up" component={SignUpPage}/>
-              <Route path="/sign-out" component={SignOut}/>
-              <Route component={NotFound}/>
+              <Route
+                exact path="/"
+                component={HomePage}/>
+
+              <Route
+                path="/property/:id"
+                component={PropertyPage} />
+              <Route
+                path="/account"
+                component={AccountPage} />
+              <Route
+                path="/sign-in"
+                component={SignInPage} />
+              <Route
+                path="/sign-up"
+                component={SignUpPage} />
+              <Route
+                path="/sign-out"
+                component={SignOut}/>
+
+              <Route
+                component={NotFound} />
             </Switch>
           </div>
         </div>
