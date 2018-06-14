@@ -1,4 +1,7 @@
 import React from "react"
+import PropTypes from "prop-types"
+
+import propertyPropTypes from "../propTypes/property"
 
 import {
   converge,
@@ -78,6 +81,11 @@ const Property = ({ book, property, style }) => {
       </div>
     </div>
   )
+}
+
+Property.propTypes = {
+  book: PropTypes.func.isRequired,
+  property: propertyPropTypes.isRequired
 }
 
 export default withStyle(style)(Property)
