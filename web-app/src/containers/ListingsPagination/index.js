@@ -8,8 +8,8 @@ import { fetchStart } from "../../actions/listings"
 
 const mapStateToProps = (state) => {
   return {
-    current: state.listings.currentPage,
-    total: state.listings.totalPages
+    currentPage: state.listings.currentPage,
+    totalPages: state.listings.totalPages
   }
 }
 
