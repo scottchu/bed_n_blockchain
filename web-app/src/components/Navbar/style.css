@@ -1,14 +1,11 @@
 @import "../../styles/colors.css";
-@import "../../styles/fonts.css";
 @import "../../styles/config.css";
+@import "../../styles/fonts.css";
+@import "../../styles/layout.css";
 
 .container {
   position: relative;
   height: $navbar-height;
-
-  & * {
-    box-sizing: border-box;
-  }
 }
 
 .inner {
@@ -25,8 +22,6 @@
   justify-content: center;
 
   height: $navbar-height;
-
-  padding: 0 15px;
 
   background: $white;
 
@@ -45,7 +40,8 @@
 
   flex: 1 1 auto;
 
-  max-width: 1200px;
+  max-width: $layout-max-width;
+  padding: $layout-padding;
 }
 
 /* Each column is 15px apart from the the others  */
