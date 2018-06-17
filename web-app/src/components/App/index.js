@@ -2,9 +2,9 @@ import React, { Component } from "react"
 import { Switch, Route } from "react-router-dom"
 
 import AccountPage from "../AccountPage"
-import HomePage from "../HomePage"
+import ListingPage from "../ListingPage"
+import HostingPage from "../HostingPage"
 import NotFound from "../NotFound"
-import PropertyPage from "../PropertyPage"
 import SignInPage from "../SignInPage"
 import SignUpPage from "../SignUpPage"
 
@@ -27,11 +27,11 @@ class App extends Component {
             <Switch>
               <Route
                 exact path="/"
-                component={HomePage}/>
+                component={ListingPage}/>
 
               <Route
-                path="/property/:id"
-                component={PropertyPage} />
+                path="/host"
+                component={HostingPage} />
               <Route
                 path="/account"
                 component={AccountPage} />
