@@ -3,49 +3,13 @@ import PropTypes from "prop-types"
 
 import propertyPropTypes from "../propTypes/property"
 
-import {
-  converge,
-  identity,
-  length,
-  join,
-  multiply,
-  nth,
-  path,
-  pipe,
-  prop
-} from "ramda"
+import { name, price, type, address, city, country, dot, space } from "./utils"
+
+import placeholders from "./placeholders"
+import sample from "./sample"
 
 import { withStyle } from "../../common/css"
 import style from "./style"
-
-const name = prop("name")
-const price = prop("price")
-const type = prop("type")
-
-const address = prop("address")
-const city = path(["address", "city"])
-const country = path(["address", "country"])
-
-const placeholders = [
-  "url(/images/placeholders/1.webp)",
-  "url(/images/placeholders/2.webp)",
-  "url(/images/placeholders/3.webp)",
-  "url(/images/placeholders/4.webp)",
-  "url(/images/placeholders/5.webp)",
-  "url(/images/placeholders/6.webp)",
-  "url(/images/placeholders/7.webp)"
-]
-
-const randomIndex = pipe(
-  length,
-  converge(multiply, [Math.random, Math.floor]),
-  Math.floor
-)
-
-const sample = converge(nth, [randomIndex, identity])
-
-const dot = join(" · ")
-const space = join(" ")
 
 const Property = ({ book, property, style }) => {
   const location = space([city(property), country(property)])
