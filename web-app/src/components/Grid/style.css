@@ -1,12 +1,4 @@
 .container {
-  padding: 15px;
-}
-
-.body {
-  margin-bottom: 15px;
-}
-
-.footer {
 
 }
 
@@ -20,8 +12,4 @@
   padding: 0;
 
   transition: grid-template-columns linear 250ms;
-}
-
-.item {
-
 }
