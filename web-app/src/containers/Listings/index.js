@@ -1,19 +1,19 @@
+import React from "react"
 import { connect } from "react-redux"
 
-import { withRouter } from "react-router-dom"
-
 import Listing from "../Listing"
-import Properties from "../../components/Properties"
-
-import { fetchStart } from "../../actions/listings"
+import Grid from "../../components/Grid"
 
 const mapStateToProps = (state) => {
-  return {...state.listings,
-    Property: Listing
+  return {
+    items: state.listings.properties,
+    render: (property) => {
+      return <Listing key={property.id} property={property} />
+    }
   }
 }
 
 export default connect(
     mapStateToProps,
     null
-)(Properties)
+)(Grid)

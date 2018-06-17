@@ -6,10 +6,6 @@ import PropertyCard from "../../components/PropertyCard"
 
 import { bookProperty } from "../../actions/listings"
 
-const mapStateToProps = (state) => {
-  return {...state.listings}
-}
-
 const mapDispatchToProps = (dispatch, { property }) => {
   return {
     book: () => dispatch(bookProperty(property.id))
@@ -17,6 +13,6 @@ const mapDispatchToProps = (dispatch, { property }) => {
 }
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  null,
+  mapDispatchToProps
 )(PropertyCard)
