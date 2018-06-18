@@ -1,6 +1,6 @@
 import { ofType } from "redux-observable"
 import { of } from "rxjs"
-import { catchError, map, switchMap, take } from "rxjs/operators"
+import { catchError, map, switchMap, take, tap } from "rxjs/operators"
 
 import { always, mapObjIndexed, path, pipe, pick, prop } from "ramda"
 
@@ -26,8 +26,8 @@ const onSignUpFailed = pipe(
 const epic = (action$, state$, { api }) => {
   return action$
     .pipe(
-      ofType(TYPE.signIn),
-      switchMap(() => state$),
+      ofType(TYPE.signUp),
+      map(() => state$.value),
       map(sessionParams),
       switchMap((data) => {
         return api
