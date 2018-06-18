@@ -4,7 +4,7 @@ import Input from "../../../components/Input"
 
 import { updateForm } from "../../../actions/session"
 
-import { targetValue } from "../../../common/events"
+import { target } from "../../../common/event"
 
 const mapStateToProps = (state) => {
   const field = state.session.form.password
@@ -20,7 +20,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChange: (e) => dispatch(updateForm("password", targetValue(e)))
+    onChange: (e) => dispatch(updateForm("password", target.value(e)))
   }
 }
 

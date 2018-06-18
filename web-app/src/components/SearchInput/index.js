@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import { targetValue } from "../../common/events"
+import { target } from "../../common/event"
 
 import { withStyle } from "../../common/css"
 import style from "./style"
@@ -25,7 +25,7 @@ const SearchInput = ({
         value={value}
         onBlur={onBlur}
         onFocus={onFocus}
-        onChange={(e) => onChange(targetValue(e))}
+        onChange={(e) => onChange(target.value(e))}
         onKeyPress={(e) => (e.key == "Enter") && onSubmit()}/>
     </div>
   )
