@@ -9,5 +9,5 @@ export default combineEpics(
   account,
   authToken,
   signIn,
-  // signUp
+  signUp
 )
