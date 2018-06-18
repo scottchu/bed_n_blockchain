@@ -1,15 +1,15 @@
 import React from "react"
-import { Redirect } from "react-router-dom"
+
 import { connect } from "react-redux"
+import { withRouter } from "react-router-dom"
+
 import AuthorizeRedirect from "../../components/AuthorizeRedirect"
 
 const mapStateToProps = ({ user }) => {
-  return {
-    user
-  }
+  return { auth: user.auth }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   null
-)(AuthorizeRedirect)
+)(AuthorizeRedirect))

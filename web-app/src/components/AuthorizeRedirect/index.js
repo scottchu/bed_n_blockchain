@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { Redirect } from "react-router-dom"
 
 import { is, pathEq } from "ramda"
@@ -9,23 +10,24 @@ const isBool = is(Boolean)
 const signedIn = pathEq(["auth", "signedIn"])
 
 const AuthorizeRedirect = ({
-  user,
+  auth,
   when,
-  whenSignedIn,
-  whenNotSignedIn,
+  history,
   ...props
 }) => {
-  const shouldRedirect = (
-    isFunc(when) ? when(user) : (
-      (whenSignedIn && user.auth.signedIn) ||
-      (whenNotSignedIn && !user.auth.signedIn)
-    )
-  )
 
-  if (shouldRedirect)
+  if (when(auth))
     return <Redirect {...props} />
 
   return null
+}
+
+AuthorizeRedirect.propTypes = {
+  auth: PropTypes.shape({
+    token: PropTypes.string,
+    signedIn: PropTypes.bool.isRequired
+  }).isRequired,
+  when: PropTypes.func.isRequired
 }
 
 export default AuthorizeRedirect
