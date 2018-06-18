@@ -64,6 +64,13 @@ const reducer = (state = initialState, action) => {
       return initialState
     }
 
+    case userTYPE.signInFailed:
+    case userTYPE.signUpFailed: {
+      return {...state,
+        password: initialState.password
+      }
+    }
+
     default:
       return state
   }
