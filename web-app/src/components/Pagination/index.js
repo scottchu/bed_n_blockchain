@@ -5,11 +5,15 @@ import { equals, gt, map, range } from "ramda"
 import { withStyle } from "../../common/css"
 import style from "./style"
 
-const visiblePages = (currentPage, totalPages) => {
+const visiblePages = (currentPage, totalPages, maxDisplay) => {
+  const mid = totalPages <= maxDisplay ? totalPages : maxDisplay
+  const space = Math.floor(mid / 2)
+  const even = mid % 2 == 0 ? 0 : 1
+
   let currentIndex = 0
 
-  const start = currentPage - 2
-  const end = currentPage + 3
+  const start = currentPage - space
+  const end = currentPage + space + even
   const overflow = totalPages - end
 
   const n = start < 1 ?
@@ -22,7 +26,7 @@ const visiblePages = (currentPage, totalPages) => {
 }
 
 const Pagination = ({ currentPage, style, totalPages, jump }) => {
-  const pages = visiblePages(currentPage, totalPages)
+  const pages = visiblePages(currentPage, totalPages, 5)
 
   return (
     <div className={style.container}>
