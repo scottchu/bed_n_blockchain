@@ -4,6 +4,8 @@ import { Redirect } from "react-router-dom"
 
 import { is, pathEq } from "ramda"
 
+import authPropTypes from "../propTypes/auth"
+
 const isFunc = is(Function)
 const isBool = is(Boolean)
 
@@ -12,7 +14,6 @@ const signedIn = pathEq(["auth", "signedIn"])
 const AuthorizeRedirect = ({
   auth,
   when,
-  history,
   ...props
 }) => {
 
@@ -23,10 +24,7 @@ const AuthorizeRedirect = ({
 }
 
 AuthorizeRedirect.propTypes = {
-  auth: PropTypes.shape({
-    token: PropTypes.string,
-    signedIn: PropTypes.bool.isRequired
-  }).isRequired,
+  auth: authPropTypes.isRequired,
   when: PropTypes.func.isRequired
 }
 
