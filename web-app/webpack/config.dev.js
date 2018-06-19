@@ -85,8 +85,8 @@ const config = {
   resolve: {
     extensions: ["*", ".js", ".jsx", ".css"],
     modules: [
-      path.src(),
-      path.nodeModules()
+      path.nodeModules(),
+      path.src()
     ]
   },
   devtool: 'source-map',
