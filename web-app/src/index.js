@@ -14,7 +14,7 @@ import "./styles/global.css"
 render(
   <Provider store={store}>
     <Router history={history}>
-      <App/>
+      <App />
     </Router>
   </Provider>,
   document.querySelector("#root")
