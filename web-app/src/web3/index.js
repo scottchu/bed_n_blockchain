@@ -1,11 +1,9 @@
 /* explicit import path due to module name collision */
 import Web3, { providers } from "../../node_modules/web3"
 
-// const address = "http://localhost:8545"
-// const provider = new providers.HttpProvider(address)
+export contracts from "./contracts"
 
-const address = "ws://localhost:8545"
-const provider = new providers.WebsocketProvider(address)
+const provider = new providers.WebsocketProvider("ws://localhost:8545")
 
 const web3 = new Web3(provider)
 
