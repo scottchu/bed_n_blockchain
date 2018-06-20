@@ -1,7 +1,7 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
 
-import { withStyle } from "../../../common/css"
+import { withStyle } from "../../utils/classNames"
 import style from "./style"
 
 const GuesMenu = ({ style }) => {

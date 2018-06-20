@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-import { withStyle } from "../../common/css"
+import { withStyle } from "../utils/classNames"
 import style from "./style"
 
 const Logo = ({ style, src }) => {

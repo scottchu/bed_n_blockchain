@@ -5,14 +5,14 @@ import { Subject } from "rxjs"
 import { distinctUntilChanged, filter, startWith, tap } from "rxjs/operators"
 import { equals, isNil } from "ramda"
 
-import { withStyle } from "../../../common/css"
+import { withStyle } from "../../utils/classNames"
 import style from "./style"
 
 class UserDropdownMenu extends Component {
 
   scrolling$ = new Subject()
 
-  listenToScroll = () => {
+  switchOffOnScroll = () => {
     return this.scrolling$
       .pipe(
         distinctUntilChanged(),
@@ -39,18 +39,19 @@ class UserDropdownMenu extends Component {
   }
 
   componentDidMount() {
-    this.listenToScroll()
+    this.switchOffOnScroll()
   }
 
   render() {
-    const { style } = this.props
+    const { style, classNames } = this.props
     const { active } = this.state
 
     return (
       <div
-        className={style.join(
+        className={classNames(
           style.container,
-          style.ifElse(active, style.active))}>
+          active && style.active
+        )}>
 
         <div>
           <a

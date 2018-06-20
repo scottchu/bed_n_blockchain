@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 
 import UserDropdownMenu from "../../../containers/Menu/UserDropdownMenu"
 
-import { withStyle } from "../../../common/css"
+import { withStyle } from "../../utils/classNames"
 import style from "./style"
 
 const UserMenu = ({ style }) => {

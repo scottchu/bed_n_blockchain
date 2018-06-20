@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import { map } from "ramda"
 
-import { withStyle } from "../../common/css"
+import { withStyle } from "../utils/classNames"
 import style from "./style"
 
 const Grid = ({ items, render, style }) => {

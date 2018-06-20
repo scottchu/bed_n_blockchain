@@ -1,22 +1,22 @@
 import React from "react"
 
-import Listings from "../../containers/Listings"
-import ListingsPagination from "../../containers/ListingsPagination"
+import Hostings from "../../containers/Hostings"
+import HostingsPagination from "../../containers/HostingsPagination"
 
 import { withStyle } from "../utils/classNames"
 import style from "./style"
 
-const ListingPage = ({ sytle }) => {
+const HostingPage = ({ sytle }) => {
   return (
     <div className={style.container}>
       <div className={style.body}>
-        <Listings />
+        <Hostings />
       </div>
       <div className={style.footer}>
-        <ListingsPagination />
+        <HostingsPagination />
       </div>
     </div>
   )
 }
 
-export default withStyle(style)(ListingPage)
+export default withStyle(style)(HostingPage)

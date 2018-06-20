@@ -1,6 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+import LazyImage from "../LazyImage"
+
 import propertyPropTypes from "../propTypes/property"
 
 import { name, price, type, address, city, country, dot, space } from "./utils"
@@ -8,7 +10,7 @@ import { name, price, type, address, city, country, dot, space } from "./utils"
 import placeholders from "./placeholders"
 import sample from "./sample"
 
-import { withStyle } from "../../common/css"
+import { withStyle } from "../utils/classNames"
 import style from "./style"
 
 const Property = ({ book, property, style }) => {
@@ -18,9 +20,12 @@ const Property = ({ book, property, style }) => {
   return (
     <div className={style.container}>
       <div className={style.header}>
-        <div
+        <LazyImage
           className={style.image}
-          style={{ backgroundImage: sample(placeholders) }} />
+          src={sample(placeholders)}
+          placeholder={"/images/placeholders/0.gif"}
+          placeholderClassName={style.image} />
+
       </div>
       <div className={style.content}>
         <div className={style.left}>

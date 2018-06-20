@@ -4,7 +4,7 @@ import EmailInput from "../../containers/Session/EmailInput"
 import PasswordInput from "../../containers/Session/PasswordInput"
 import SubmitButton from "../../containers/Session/SubmitButton"
 
-import { withStyle } from "../../common/css"
+import { withStyle } from "../utils/classNames"
 import style from "./style"
 
 const SessionForm = ({ onSubmit, style, title }) => {

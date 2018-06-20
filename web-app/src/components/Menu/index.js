@@ -3,7 +3,7 @@ import React from "react"
 import GuestMenu from "./GuestMenu"
 import UserMenu from "./UserMenu"
 
-import { withStyle } from "../../common/css"
+import { withStyle } from "../utils/classNames"
 import style from "./style"
 
 const Menu = ({ signedIn, style }) => {

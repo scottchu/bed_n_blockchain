@@ -11,7 +11,7 @@ import SignUpPage from "../SignUpPage"
 import Navbar from "../../containers/Navbar"
 import SignOut from "../../containers/SignOut"
 
-import { withStyle } from "../../common/css"
+import { withStyle } from "../utils/classNames"
 import style from "./style"
 
 class App extends Component {

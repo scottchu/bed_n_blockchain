@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import { target } from "../../common/event"
 
-import { withStyle } from "../../common/css"
+import { withStyle } from "../utils/classNames"
 import style from "./style"
 
 const SearchInput = ({

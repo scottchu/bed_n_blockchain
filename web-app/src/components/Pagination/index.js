@@ -2,31 +2,13 @@ import React from "react"
 import PropTypes from "prop-types"
 import { equals, gt, map, range } from "ramda"
 
-import { withStyle } from "../../common/css"
+import { withStyle } from "../utils/classNames"
 import style from "./style"
 
-const visiblePages = (currentPage, totalPages, maxDisplay) => {
-  const mid = totalPages <= maxDisplay ? totalPages : maxDisplay
-  const space = Math.floor(mid / 2)
-  const even = mid % 2 == 0 ? 0 : 1
+import { visiblePages } from "./utils"
 
-  let currentIndex = 0
-
-  const start = currentPage - space
-  const end = currentPage + space + even
-  const overflow = totalPages - end
-
-  const n = start < 1 ?
-    (1 - start) :
-    overflow < 0 ?
-    overflow + 1 :
-    0
-
-  return range(start + n, end + n)
-}
-
-const Pagination = ({ currentPage, style, totalPages, jump }) => {
-  const pages = visiblePages(currentPage, totalPages, 5)
+const Pagination = ({ classNames, currentPage, style, totalPages, jump }) => {
+  const pages = visiblePages(currentPage, totalPages)
 
   return (
     <div className={style.container}>
@@ -35,7 +17,10 @@ const Pagination = ({ currentPage, style, totalPages, jump }) => {
         <li
           className={style.item}>
           <button
-            className={style.join(style.page, style.ifElse(equals(currentPage, 1), style.invisible))}
+            className={classNames(
+              style.page,
+              equals(currentPage, 1) && style.invisible
+            )}
             onClick={() => jump(1)} >
             { "<" }
           </button>
@@ -43,13 +28,15 @@ const Pagination = ({ currentPage, style, totalPages, jump }) => {
 
         {map((num) => {
           const active = equals(currentPage, num)
-          const className = style.join(style.page, style.ifElse(active, style.active))
           return (
             <li
               className={style.item}
               key={num}>
               <button
-                className={className}
+                className={classNames(
+                  style.page,
+                  active && style.active
+                )}
                 onClick={() => jump(num)}
                 disabled={active}>
                 {num}
@@ -61,7 +48,10 @@ const Pagination = ({ currentPage, style, totalPages, jump }) => {
         <li
           className={style.item}>
           <button
-            className={style.join(style.page, style.ifElse(equals(currentPage, totalPages), style.invisible))}
+            className={classNames(
+              style.page,
+              equals(currentPage, totalPages) && style.invisible
+            )}
             onClick={() => jump(totalPages)} >
             { ">" }
           </button>

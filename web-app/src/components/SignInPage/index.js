@@ -1,16 +1,18 @@
 import React from "react"
+import { prop } from "ramda"
+
 import SignInForm from "../../containers/SignInForm"
 import AuthorizeRedirect from "../../containers/AuthorizeRedirect"
 
-import { withStyle } from "../../common/css"
+import { withStyle } from "../utils/classNames"
 import style from "./style"
 
 const SignInPage = ({ style }) => {
   return (
     <div className={style.container}>
       <AuthorizeRedirect
-        whenSignedIn
-        to="/" />
+        to="/"
+        when={prop("signedIn")} />
 
       <SignInForm />
     </div>

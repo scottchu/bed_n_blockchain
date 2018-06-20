@@ -25,7 +25,10 @@
 
   background: $white;
 
+  box-shadow: none;
+
   transition: box-shadow linear 250ms;
+  will-change: box-shadow;
 
   &.shadow {
     box-shadow: 0px 6px 12px -6px $black;
