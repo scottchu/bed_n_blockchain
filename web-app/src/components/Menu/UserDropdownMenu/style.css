@@ -78,8 +78,9 @@ $offset: 7px;
     color: $white;
   }
 
-  &:active {
-    background: color-mod($green l(50%));
+  &.active {
+    background: $black;
+    color: $white;
   }
 }
 

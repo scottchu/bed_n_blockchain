@@ -67,7 +67,9 @@ class UserDropdownMenu extends Component {
               <NavLink
                 className={style.link}
                 activeClassName={style.active}
-                to="/">
+                exact
+                to="/"
+                onClick={() => this.turn(false)}>
                 Home
               </NavLink>
             </li>
@@ -75,7 +77,8 @@ class UserDropdownMenu extends Component {
               <NavLink
                 className={style.link}
                 activeClassName={style.active}
-                to="/account">
+                to="/account"
+                onClick={() => this.turn(false)}>
                 Account
               </NavLink>
             </li>
@@ -83,7 +86,8 @@ class UserDropdownMenu extends Component {
               <NavLink
                 className={style.link}
                 activeClassName={style.active}
-                to="/host">
+                to="/host"
+                onClick={() => this.turn(false)}>
                 Host
               </NavLink>
             </li>
@@ -91,7 +95,8 @@ class UserDropdownMenu extends Component {
               <NavLink
                 className={style.link}
                 activeClassName={style.active}
-                to="/sign-out">
+                to="/sign-out"
+                onClick={() => this.turn(false)}>
                 Sign Out
               </NavLink>
             </li>
