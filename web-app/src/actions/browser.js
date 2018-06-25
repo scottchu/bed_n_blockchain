@@ -4,7 +4,7 @@ export const TYPE = {
 
   updateOffsetY: "BROWSER_UPDATE_OFFSET_Y",
 
-  click: "BROWSER_CLICK"
+  scrollTo: "BROWSER_SCROLL_TO"
 }
 
 export const updateOffsetY = (offsetY) => {
@@ -23,5 +23,12 @@ export const scrollStart = () => {
 export const scrollStop = () => {
   return {
     type: TYPE.scrollStop
+  }
+}
+
+export const scrollTo = (coordinate) => {
+  return {
+    type: TYPE.scrollTo,
+    coordinate
   }
 }
