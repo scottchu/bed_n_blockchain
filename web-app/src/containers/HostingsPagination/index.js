@@ -1,7 +1,13 @@
 import { connect } from "react-redux"
 
+import { withRouter } from "react-router-dom"
+
+import { merge } from "ramda"
+
 import Pagination from "../../components/Pagination"
 
+import { scrollTo } from "../../actions/browser"
+import { locationPush } from "../../actions/history"
 import { fetchStart } from "../../actions/hostings"
 
 const mapStateToProps = (state) => {
@@ -11,13 +17,20 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, { location }) => {
   return {
-    jump: (page) => dispatch(fetchStart({ page }))
+    goto: (page) => {
+      const search = (location.search == "" ? "&" : "") + "page=" + page
+      dispatch(locationPush(merge(location, { search })))
+      dispatch(scrollTo({ top: 0, behavior: "smooth" }))
+    },
+    load: (page) => {
+      dispatch(fetchStart({ page }))
+    }
   }
 }
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(Pagination)
+)(Pagination))
