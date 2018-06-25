@@ -34,6 +34,10 @@ class UserDropdownMenu extends Component {
     return this.setState((state) => ({...state, active}))
   }
 
+  turnOff = () => {
+    return this.turn(false)
+  }
+
   componentWillUpdate({ scrolling }) {
     this.scrolling$.next(scrolling)
   }
@@ -69,7 +73,7 @@ class UserDropdownMenu extends Component {
                 activeClassName={style.active}
                 exact
                 to="/"
-                onClick={() => this.turn(false)}>
+                onClick={this.turnOff}>
                 Home
               </NavLink>
             </li>
@@ -78,7 +82,7 @@ class UserDropdownMenu extends Component {
                 className={style.link}
                 activeClassName={style.active}
                 to="/account"
-                onClick={() => this.turn(false)}>
+                onClick={this.turnOff}>
                 Account
               </NavLink>
             </li>
@@ -87,7 +91,7 @@ class UserDropdownMenu extends Component {
                 className={style.link}
                 activeClassName={style.active}
                 to="/host"
-                onClick={() => this.turn(false)}>
+                onClick={this.turnOff}>
                 Host
               </NavLink>
             </li>
@@ -96,7 +100,7 @@ class UserDropdownMenu extends Component {
                 className={style.link}
                 activeClassName={style.active}
                 to="/sign-out"
-                onClick={() => this.turn(false)}>
+                onClick={this.turnOff}>
                 Sign Out
               </NavLink>
             </li>
