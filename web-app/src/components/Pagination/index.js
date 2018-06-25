@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
-import { equals, gt, map, not } from "ramda"
+import { equals, gt, gte, lte, map, not } from "ramda"
 
 import { withStyle } from "../utils/classNames"
 import style from "./style"
@@ -12,7 +12,6 @@ class Pagination extends Component {
   goto = (page) => () => this.props.goto(page)
 
   fetchPage = ({ load, location }) => {
-
     load(getSearchPage(location))
   }
 
@@ -28,6 +27,9 @@ class Pagination extends Component {
   render() {
     const { classNames, currentPage, style, totalPages } = this.props
     const pages = visiblePages(currentPage, totalPages)
+
+    if (lte(totalPages, 1))
+      return null
 
     return (
       <div className={style.container}>

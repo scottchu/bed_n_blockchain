@@ -20,7 +20,7 @@ const onFetchFail = pipe(
 const dataWithDefault = propOr({}, "data")
 
 const epic = (action$, _store, { api }) => {
-  const stopFetching$ = action$
+  const cancel$ = action$
     .pipe(ofType(TYPE.fetchStop))
 
   return action$
@@ -34,7 +34,7 @@ const epic = (action$, _store, { api }) => {
             map(onFetchComplete),
             catchError(onFetchFail),
             take(1),
-            takeUntil(stopFetching$)
+            takeUntil(cancel$)
           )
       })
     )

@@ -26,12 +26,13 @@ const isNotNil = complement(isNil)
 
   Returns: [UserSetAuthToken]
 */
-const setAuthTokenOnSessionCreated = (action$, _state$, { cookies }) => {
+const setAuthTokenOnSessionCreated = (action$, _state$, { api, cookies }) => {
   return action$
     .pipe(
       ofType(TYPE.signInSuccessful, TYPE.signUpSuccessful),
       map(authToken),
       tap(writeTo(cookies)),
+      tap(api.headers.set("Authorization")),
       map(setAuthToken)
     )
 }
@@ -41,11 +42,12 @@ const setAuthTokenOnSessionCreated = (action$, _state$, { cookies }) => {
 
   Returns: []
 */
-const delAuthTokenOnSessionDestroyed = (action$, _state$, { cookies }) => {
+const delAuthTokenOnSessionDestroyed = (action$, _state$, { api, cookies }) => {
   return action$
     .pipe(
       ofType(TYPE.signOut),
       tap(delFrom(cookies)),
+      tap(() => api.headers.del(["Authorization"])),
       ignoreElements()
     )
 }

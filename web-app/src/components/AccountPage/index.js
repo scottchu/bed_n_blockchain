@@ -6,7 +6,7 @@ const AccountPage = () => {
   return (
     <div>
       <AuthorizeRedirect
-        when={({ signedIn}) => !signedIn}
+        when={({ signedIn }) => !signedIn}
         to="/" />
       Account
     </div>
