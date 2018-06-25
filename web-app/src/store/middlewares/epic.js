@@ -4,12 +4,15 @@
 import { createEpicMiddleware } from "redux-observable"
 import api from "../../api"
 import cookies from "../../lib/cookies"
+import history from "../../history"
 
 const dependencies = {
   api,
+  cookies,
+  history,
+
   console,
   document,
-  cookies,
   window
 }
 
