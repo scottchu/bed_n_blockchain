@@ -10,6 +10,11 @@ defmodule APIWeb.Router do
   scope "/api", APIWeb do
     pipe_through(:api)
 
+    resources(
+      "/hostings",
+      HostingController
+    )
+
     get("/listings", ListingController, :index)
 
     get("/search", ListingController, :search)
