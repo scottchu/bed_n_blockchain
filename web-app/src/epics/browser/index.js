@@ -1,7 +1,9 @@
 import { combineEpics } from "redux-observable"
 
-import scroll from "./scroll"
+import onScroll from "./onScroll"
+import scrollTo from "./scrollTo"
 
 export default combineEpics(
-  scroll
+  onScroll,
+  scrollTo
 )
