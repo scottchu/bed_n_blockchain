@@ -10,6 +10,8 @@ import style from "./style"
 const SignUpPage = ({ style }) => {
   return (
     <div className={style.container}>
+
+      {/* redirect to root when signed in */}
       <AuthorizeRedirect
         when={prop("signedIn")}
         to="/" />
