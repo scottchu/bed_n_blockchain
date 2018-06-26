@@ -1,9 +1,54 @@
-.container {}
+@import "../../styles/animation";
+@import "../../styles/colors.css";
+@import "../../styles/fonts.css";
 
-.body {
-  margin-bottom: 15px;
+.container {
+  position: relative;
 }
 
-.footer {
+.header {
+  position: relative;
+  margin-bottom: 15px;
+
+  & > .menu {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+
+    & > li {
+      flex: 0 0 auto;
+    }
+  }
+}
+
+.button {
+  display: block;
+  padding: 7px 15px;
+
+  border: none;
+  color: $black;
+  font-weight: 700;
+
+  transition: background linear $regular-delay,
+              color linear $regular-delay;
+
+  &:hover {
+    color: $white;
+    background: $green;
+  }
+
+  &:active, &.active {
+    color: $white;
+    background: $black;
+  }
+}
+
+.content {
   margin-bottom: 15px;
 }
