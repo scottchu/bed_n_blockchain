@@ -1,0 +1,15 @@
+@import "../../styles/animation";
+@import "../../styles/colors.css";
+@import "../../styles/fonts.css";
+
+.container {
+  margin-top: 15px;
+}
+
+.body {
+  margin-bottom: 15px;
+}
+
+.footer {
+  margin-bottom: 15px;
+}
