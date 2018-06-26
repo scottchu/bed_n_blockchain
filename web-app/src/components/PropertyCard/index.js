@@ -13,7 +13,7 @@ import sample from "./sample"
 import { withStyle } from "../utils/classNames"
 import style from "./style"
 
-const Property = ({ book, property, style }) => {
+const PropertyCard = ({ book, property, style }) => {
   const location = space([city(property), country(property)])
   const info = dot([type(property), location])
 
@@ -52,9 +52,8 @@ const Property = ({ book, property, style }) => {
   )
 }
 
-Property.propTypes = {
-  book: PropTypes.func.isRequired,
+PropertyCard.propTypes = {
   property: propertyPropTypes.isRequired
 }
 
-export default withStyle(style)(Property)
+export default withStyle(style)(PropertyCard)
