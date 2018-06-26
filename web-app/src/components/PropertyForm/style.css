@@ -1,3 +1,40 @@
-.container {
+@import "../../styles/colors";
+@import "../../styles/fonts";
 
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.inner {
+  flex: 0 0 100%;
+  padding: 30px 15px;
+  width: 100%;
+  max-width: 480px;
+  box-sizing: border-box;
+
+  border: 1px solid $white;
+  background: $white;
+}
+
+.header {
+  margin-bottom: 15px;
+  border-bottom: 1px solid $grey;
+  & > h1 {
+    color: $black;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+}
+
+.body {
+
+}
+
+.section {
+  margin-bottom: 15px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }

@@ -13,26 +13,27 @@
   align-items: center;
 
   width: 100%;
+
+  text-transform: capitalize;
 }
 
-.label-text {
+.labelText {
   position: absolute;
   top: 7px;
   left: 0px;
   color: $black;
   font-weight: 300;
   user-select: none;
-  text-transform: capitalize;
 }
 
-.input {
+.select {
   flex: 1 1 auto;
 
   top: 0;
   left: 0;
   width: 100%;
+  height: 48px;
   margin-top: 15px;
-  padding: 15px 15px;
 
   background: $white;
   font-size: 12px;
@@ -52,20 +53,5 @@
 
   &:active {
     border-bottom: 1px solid $green;
-  }
-}
-
-.input[type="submit"] {
-  background: $green;
-  color: $white;
-
-  &:hover {
-    background: color-mod($green l(50%));
-    color: $white;
-  }
-
-  &:active {
-    background: color-mod($green l(40%));
-    color: $white;
   }
 }
